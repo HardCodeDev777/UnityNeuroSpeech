@@ -1,2 +1,2 @@
 *.bat linguist-detectable=true
-*.bat linguist-language=Batchfile -linguist-documentation
+*.bat linguist-language=Batchfile
