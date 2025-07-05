@@ -47,7 +47,7 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 ## 🧪 Built with:
 
-- 🧠 [`Microsoft.Extensions.AI`](https://learn.microsoft.com/en-us/dotnet/machine-learning/) (Ollama)
+- 🧠 [`Microsoft.Extensions.AI`](https://learn.microsoft.com/en-us/dotnet/ai/) (Ollama)
 - 🎤 [`whisper.unity`](https://github.com/Macoron/whisper.unity)
 - 🐍 [Python Flask server](other/server.md) (for TTS)
 - 🧊 [Coqui XTTS model](https://github.com/coqui-ai/TTS)
