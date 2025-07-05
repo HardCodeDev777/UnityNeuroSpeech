@@ -1,0 +1,19 @@
+{
+    "name": "UnityNeuroSpeech.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ef0c22381d082cf42859c9541ea51b91",
+        "GUID:edea228f55f9e7443b13a3d7a4d90956",
+        "GUID:07dcbb6497358493fa23aaaad4b6b054",
+        "GUID:ae7834c736a73d14db57e296385a026c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

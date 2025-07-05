@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+    font-family: monospace;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+.important {
+    color: red;
+}
+
+.stable {
+    color: green;
+}
+
+.credits {
+    padding-top: 15px;
+}
