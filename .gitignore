@@ -1,3 +1,6 @@
+# Python
 .venv/
 .idea/
+
+# MkDocs
 /site
