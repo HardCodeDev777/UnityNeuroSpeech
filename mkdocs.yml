@@ -1,0 +1,36 @@
+site_name: UnityNeuroSpeech
+site_url: https://hardcodedev777.github.io/unityneurospeech
+theme:
+  name: material
+  logo: media/logo.png
+  favicon: media/favicon.png
+  palette:
+    scheme: slate
+    primary: black
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.highlight
+    - search.suggest
+    - header.autohide
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Unity:
+      - Configure Settings: unity/configure-settings.md
+      - Creating Agent: unity/creating-agent.md
+      - Building Game: unity/building-game.md
+      - API Reference: unity/agent-api.md
+  - Other:
+    - Python Server: other/server.md
+    - FAQ: other/faq.md
+    - Licenses: other/licenses.md
+repo_url: https://github.com/HardCodeDev777/UnityNeuroSpeech
+copyright: Copyright &copy; 2025 HardCodeDev
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/HardCodeDev777/UnityNeuroSpeech
+  analytics:
+    provider: google
+    tracking_id: G-X9H2RHNQ7G
