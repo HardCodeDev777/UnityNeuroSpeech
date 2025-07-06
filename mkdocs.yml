@@ -34,3 +34,7 @@ extra:
   analytics:
     provider: google
     tracking_id: G-X9H2RHNQ7G
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite

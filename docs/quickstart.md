@@ -27,16 +27,36 @@
 
 ## ⚙️ Base Setup
 
-1. Go to the [UnityNeuroSpeech GitHub repository](https://github.com/HardCodeDev777/UnityNeuroSpeech) and download the latest Release.
-2. Extract the `.zip`. You'll see:
-   - a `.unitypackage`
-   - a `Server/` folder
-   - a `run_server.bat` file  
-   ⚠️ **Do not import the Server folder or `.bat` file into Unity. Keep them outside the project directory.**
-3. Place your voice `.wav` files into `Server/Voices`.  
+1. Go to the [UnityNeuroSpeech GitHub repository](https://github.com/HardCodeDev777/UnityNeuroSpeech) and download the following **three `.rar` files** from the latest Release:
+   - `UnityNeuroSpeech.X.X.X.rar` – main framework files  
+   - `default.venv.rar` – Python environment for the TTS server  
+   - `TTSModel.rar` – pretrained XTTS model
+
+2. Extract all archives to the same directory. After extraction:
+   - Inside `UnityNeuroSpeech/` you’ll find:
+     - a `.unitypackage`  
+     - a `Server/` folder  
+     - a `run_server.bat` file  
+     ⚠️ **Do not import the `Server` folder or `.bat` file into Unity. Keep them outside the project directory.**
+
+3. Place your `.wav` voice files into `Server/Voices`.  
    Each file must follow the naming pattern: `en_voice.wav`, `ru_voice.wav`, etc.
-4. Import the `.unitypackage` into Unity.
-5. In the `UnityNeuroSpeech` folder, find the empty `Whisper` folder and drop your `.bin` Whisper model file into it.
+
+4. Move the extracted `.venv` folder (from `default.venv.rar`) into the `Server/` folder.
+
+5. Move the extracted `TTSModel/` folder (from `TTSModel.rar`) into the `Server/` folder as well.
+
+6. Import the `.unitypackage` into your Unity project.
+
+7. In the `UnityNeuroSpeech` folder, you’ll see an empty `Whisper/` folder. Drop your Whisper `.bin` model file into it.
+
+> Some folders (like `Whisper/`) may contain `.txt` placeholder files.  
+> These are only used to ensure Unity exports the folder. You can safely delete them after setup.
+
+---
+
+> You can also manually install your own Python environment and download the XTTS model separately.  
+> But if you want everything to "just work" **without fighting with pip, PATH, or broken dependencies** — use the provided `.venv` and `TTSModel`.
 
 ---
 
