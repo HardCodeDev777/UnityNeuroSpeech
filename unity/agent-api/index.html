@@ -900,20 +900,20 @@
   - BeforeTTS
   - AfterTTS</p>
 <p>Also, you need to create a field with your <code>YourAgentNameController</code> type (in this example, <code>AlexController</code>). Your code will look like this:</p>
-<pre><code class="language-csharp">using UnityEngine;
-using UnityNeuroSpeech.Runtime;
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">UnityNeuroSpeech.Runtime</span><span class="p">;</span>
 
-public class AlexBehaviour : AgentBehaviour
-{
-    [SerializeField] private AlexController _alexAgentController;
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AlexBehaviour</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AgentBehaviour</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="na">[SerializeField]</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="n">AlexController</span><span class="w"> </span><span class="n">_alexAgentController</span><span class="p">;</span>
 
-    public override void AfterTTS() {}
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AfterTTS</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
-    public override void BeforeTTS(AgentState state) {}
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">BeforeTTS</span><span class="p">(</span><span class="n">AgentState</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 
-    public override void Start() {}
-}
-</code></pre>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h3 id="methods-overview">🔍 Methods Overview</h3>
 <ul>
@@ -921,8 +921,8 @@ public class AlexBehaviour : AgentBehaviour
 <li><strong>BeforeTTS</strong> - Called before sending text to the TTS model.</li>
 <li><strong>Start</strong> - Same as MonoBehaviour’s Start(), but required. Use it to bind your behaviour to an agent:</li>
 </ul>
-<pre><code class="language-csharp">public override void Start() =&gt; AgentManager.SetBehaviourToAgent(_alexAgentController, this);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">AgentManager</span><span class="p">.</span><span class="n">SetBehaviourToAgent</span><span class="p">(</span><span class="n">_alexAgentController</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+</code></pre></div>
 <hr />
 <h3 id="about-agentstate-struct">🟢 About AgentState struct:</h3>
 <ul>
@@ -933,128 +933,128 @@ public class AlexBehaviour : AgentBehaviour
 <hr />
 <h3 id="what-is-setbehaviourtoagent">💡 What is <code>SetBehaviourToAgent()</code>?</h3>
 <p><code>SetBehaviourToAgent</code> function connects your AgentBehaviour to the agent's internal hooks:</p>
-<pre><code class="language-csharp">[HideInInspector] public Action&lt;AgentState&gt; BeforeTTS { get; set; }
-[HideInInspector] public Action AfterTTS { get; set; }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="na">[HideInInspector]</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">AgentState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">BeforeTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="na">[HideInInspector]</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="n">AfterTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>This lets UnityNeuroSpeech know when to call your methods at the right moments.</p>
 <hr />
 <h3 id="iagent-interface">🤔 <code>IAgent</code> interface</h3>
 <p>Also, you might notice <code>IAgent</code> interface. You don’t need to use this interface yourself, because it powers the core subscription logic.</p>
 <hr />
 <h3 id="example">🗒️ Example</h3>
-<pre><code class="language-csharp">using UnityEngine;
-using UnityNeuroSpeech.Runtime;
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">UnityNeuroSpeech.Runtime</span><span class="p">;</span>
 
-public class AlexBehaviour : AgentBehaviour
-{
-    [SerializeField] private AlexController _alexAgentController;
+<span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AlexBehaviour</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AgentBehaviour</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="na">[SerializeField]</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="n">AlexController</span><span class="w"> </span><span class="n">_alexAgentController</span><span class="p">;</span>
 
-    public override void AfterTTS() {}
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AfterTTS</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
-    public override void BeforeTTS(AgentState state)
-    {
-        if(state.responseCount == 5)
-        {
-            if (state.emotion == &quot;happy&quot;) Debug.Log(&quot;AI is happy&quot;);
-            else if (state.emotion == &quot;sad&quot;) Debug.Log(&quot;AI is not happy...&quot;);
-        }
-    }
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">BeforeTTS</span><span class="p">(</span><span class="n">AgentState</span><span class="w"> </span><span class="n">state</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">responseCount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">emotion</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;happy&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;AI is happy&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">emotion</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;sad&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;AI is not happy...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-    public override void Start() =&gt; AgentManager.SetBehaviourToAgent(_alexAgentController, this);
-}
-</code></pre>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">AgentManager</span><span class="p">.</span><span class="n">SetBehaviourToAgent</span><span class="p">(</span><span class="n">_alexAgentController</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Don't forget to attach your behaviour script to any <code>GameObject</code> in your scene.</strong></p>
 <hr />
 <h3 id="full-api-reference">👀 Full API Reference</h3>
 <p><code>AgentUtils.cs</code>:</p>
-<pre><code class="language-csharp">// Handy utility script for keeping small agent-related features together instead of splitting them across many files
+<div class="highlight"><pre><span></span><code><span class="c1">// Handy utility script for keeping small agent-related features together instead of splitting them across many files</span>
 
-using System;
-using UnityEngine;
+<span class="k">using</span><span class="w"> </span><span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
 
-namespace UnityNeuroSpeech.Runtime
-{
-    /// &lt;summary&gt;
-    /// Interface used to identify agents and allow &lt;see cref=&quot;AgentBehaviour&quot;/&gt; to subscribe to agent Actions
-    /// &lt;/summary&gt;
-    public interface IAgent
-    {
-        public Action&lt;AgentState&gt; BeforeTTS { get; set; }
-        public Action AfterTTS { get; set; }
-    }
+<span class="k">namespace</span><span class="w"> </span><span class="nn">UnityNeuroSpeech.Runtime</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">    </span><span class="c1">/// Interface used to identify agents and allow &lt;see cref=&quot;AgentBehaviour&quot;/&gt; to subscribe to agent Actions</span>
+<span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">IAgent</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">AgentState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">BeforeTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="n">AfterTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-    /// &lt;summary&gt;
-    /// Base class to define agent behavior
-    /// &lt;/summary&gt;
-    // For now it only supports pre/post-TTS hooks,
-    // since I don't see much use for anything else (yet).
-    // But future expansion is possible.
-    public abstract class AgentBehaviour : MonoBehaviour
-    {
-        /// &lt;summary&gt;
-        /// Use this to bind the behaviour script to an agent.
-        /// Recommended: &lt;see cref=&quot;AgentManager.SetBehaviourToAgent{T}(T, AgentBehaviour)&quot;/&gt;
-        /// &lt;/summary&gt;
-        public abstract void Start();
+<span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">    </span><span class="c1">/// Base class to define agent behavior</span>
+<span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">    </span><span class="c1">// For now it only supports pre/post-TTS hooks,</span>
+<span class="w">    </span><span class="c1">// since I don&#39;t see much use for anything else (yet).</span>
+<span class="w">    </span><span class="c1">// But future expansion is possible.</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AgentBehaviour</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">        </span><span class="c1">/// Use this to bind the behaviour script to an agent.</span>
+<span class="w">        </span><span class="c1">/// Recommended: &lt;see cref=&quot;AgentManager.SetBehaviourToAgent{T}(T, AgentBehaviour)&quot;/&gt;</span>
+<span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">();</span>
 
-        /// &lt;summary&gt;
-        /// Called before sending input to the Text-To-Speech model
-        /// &lt;/summary&gt;
-        /// &lt;param name=&quot;state&quot;&gt;Current agent state&lt;/param&gt;
-        public abstract void BeforeTTS(AgentState state);
+<span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">        </span><span class="c1">/// Called before sending input to the Text-To-Speech model</span>
+<span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">        </span><span class="c1">/// &lt;param name=&quot;state&quot;&gt;Current agent state&lt;/param&gt;</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">BeforeTTS</span><span class="p">(</span><span class="n">AgentState</span><span class="w"> </span><span class="n">state</span><span class="p">);</span>
 
-        /// &lt;summary&gt;
-        /// Called after receiving and playing the TTS response
-        /// &lt;/summary&gt;
-        public abstract void AfterTTS();
-    }
+<span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">        </span><span class="c1">/// Called after receiving and playing the TTS response</span>
+<span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AfterTTS</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
 
-    /// &lt;summary&gt;
-    /// Lightweight structure representing the agent's internal state
-    /// &lt;/summary&gt;
-    public readonly struct AgentState
-    {
-        /// &lt;summary&gt;
-        /// Total number of responses generated so far
-        /// &lt;/summary&gt;
-        public readonly int responseCount;
-        /// &lt;summary&gt;
-        /// Agent's message (currently just the response from Ollama)
-        /// &lt;/summary&gt;
-        public readonly string agentMessage;
-        /// &lt;summary&gt;
-        /// Emotion tag parsed from the response. It's a string like &quot;happy&quot;, &quot;sad&quot;, etc.
-        /// &lt;/summary&gt;
-        public readonly string emotion;
+<span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">    </span><span class="c1">/// Lightweight structure representing the agent&#39;s internal state</span>
+<span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">AgentState</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">        </span><span class="c1">/// Total number of responses generated so far</span>
+<span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">responseCount</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">        </span><span class="c1">/// Agent&#39;s message (currently just the response from Ollama)</span>
+<span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">agentMessage</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">        </span><span class="c1">/// Emotion tag parsed from the response. It&#39;s a string like &quot;happy&quot;, &quot;sad&quot;, etc.</span>
+<span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">emotion</span><span class="p">;</span>
 
-        public AgentState(int responseCount, string agentMessage, string emotion)
-        {
-            this.responseCount = responseCount;
-            this.agentMessage = agentMessage;
-            this.emotion = emotion;
-        }
-    }
-}
-</code></pre>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">AgentState</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">responseCount</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">agentMessage</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">emotion</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">responseCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responseCount</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">agentMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agentMessage</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="n">emotion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emotion</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><code>AgentManager.cs</code>:</p>
-<pre><code class="language-csharp">/// &lt;summary&gt;
-/// Centralized manager for agents
-/// &lt;/summary&gt;
-public static class AgentManager
-{
-    /// &lt;summary&gt;
-    /// Binds a behaviour script to an agent
-    /// &lt;/summary&gt;
-    /// &lt;typeparam name=&quot;T&quot;&gt;Generated agent controller&lt;/typeparam&gt;
-    /// &lt;param name=&quot;agent&quot;&gt;Agent instance&lt;/param&gt;
-    /// &lt;param name=&quot;beh&quot;&gt;Behaviour to attach&lt;/param&gt;
-    public static void SetBehaviourToAgent&lt;T&gt;(T agent, AgentBehaviour beh) where T: MonoBehaviour, IAgent
-    {
-        agent.AfterTTS += beh.AfterTTS;
-        agent.BeforeTTS += beh.BeforeTTS;
-    }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1">/// &lt;summary&gt;</span>
+<span class="c1">/// Centralized manager for agents</span>
+<span class="c1">/// &lt;/summary&gt;</span>
+<span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AgentManager</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">    </span><span class="c1">/// Binds a behaviour script to an agent</span>
+<span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">    </span><span class="c1">/// &lt;typeparam name=&quot;T&quot;&gt;Generated agent controller&lt;/typeparam&gt;</span>
+<span class="w">    </span><span class="c1">/// &lt;param name=&quot;agent&quot;&gt;Agent instance&lt;/param&gt;</span>
+<span class="w">    </span><span class="c1">/// &lt;param name=&quot;beh&quot;&gt;Behaviour to attach&lt;/param&gt;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="n">SetBehaviourToAgent</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">AgentBehaviour</span><span class="w"> </span><span class="n">beh</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span><span class="p">,</span><span class="w"> </span><span class="n">IAgent</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">agent</span><span class="p">.</span><span class="n">AfterTTS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">beh</span><span class="p">.</span><span class="n">AfterTTS</span><span class="p">;</span>
+<span class="w">        </span><span class="n">agent</span><span class="p">.</span><span class="n">BeforeTTS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">beh</span><span class="p">.</span><span class="n">BeforeTTS</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h4 id="you-now-have-full-control-over-your-agents">😎 You now have full control over your agents!</h4>
 <p>Design smart behaviours, react to emotions, and go full sentient AI 🤖</p>

@@ -821,17 +821,50 @@
 <hr />
 <h2 id="base-setup">⚙️ Base Setup</h2>
 <ol>
-<li>Go to the <a href="https://github.com/HardCodeDev777/UnityNeuroSpeech">UnityNeuroSpeech GitHub repository</a> and download the latest Release.</li>
-<li>Extract the <code>.zip</code>. You'll see:</li>
-<li>a <code>.unitypackage</code></li>
-<li>a <code>Server/</code> folder</li>
+<li>Go to the <a href="https://github.com/HardCodeDev777/UnityNeuroSpeech">UnityNeuroSpeech GitHub repository</a> and download the following <strong>three <code>.rar</code> files</strong> from the latest Release:</li>
+<li><code>UnityNeuroSpeech.X.X.X.rar</code> – main framework files  </li>
+<li><code>default.venv.rar</code> – Python environment for the TTS server  </li>
+<li>
+<p><code>TTSModel.rar</code> – pretrained XTTS model</p>
+</li>
+<li>
+<p>Extract all archives to the same directory. After extraction:</p>
+</li>
+<li>
+<p>Inside <code>UnityNeuroSpeech/</code> you’ll find:</p>
+<ul>
+<li>a <code>.unitypackage</code>  </li>
+<li>a <code>Server/</code> folder  </li>
 <li>a <code>run_server.bat</code> file<br />
-   ⚠️ <strong>Do not import the Server folder or <code>.bat</code> file into Unity. Keep them outside the project directory.</strong></li>
-<li>Place your voice <code>.wav</code> files into <code>Server/Voices</code>.<br />
-   Each file must follow the naming pattern: <code>en_voice.wav</code>, <code>ru_voice.wav</code>, etc.</li>
-<li>Import the <code>.unitypackage</code> into Unity.</li>
-<li>In the <code>UnityNeuroSpeech</code> folder, find the empty <code>Whisper</code> folder and drop your <code>.bin</code> Whisper model file into it.</li>
+ ⚠️ <strong>Do not import the <code>Server</code> folder or <code>.bat</code> file into Unity. Keep them outside the project directory.</strong></li>
+</ul>
+</li>
+<li>
+<p>Place your <code>.wav</code> voice files into <code>Server/Voices</code>.<br />
+   Each file must follow the naming pattern: <code>en_voice.wav</code>, <code>ru_voice.wav</code>, etc.</p>
+</li>
+<li>
+<p>Move the extracted <code>.venv</code> folder (from <code>default.venv.rar</code>) into the <code>Server/</code> folder.</p>
+</li>
+<li>
+<p>Move the extracted <code>TTSModel/</code> folder (from <code>TTSModel.rar</code>) into the <code>Server/</code> folder as well.</p>
+</li>
+<li>
+<p>Import the <code>.unitypackage</code> into your Unity project.</p>
+</li>
+<li>
+<p>In the <code>UnityNeuroSpeech</code> folder, you’ll see an empty <code>Whisper/</code> folder. Drop your Whisper <code>.bin</code> model file into it.</p>
+</li>
 </ol>
+<blockquote>
+<p>Some folders (like <code>Whisper/</code>) may contain <code>.txt</code> placeholder files.<br />
+These are only used to ensure Unity exports the folder. You can safely delete them after setup.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>You can also manually install your own Python environment and download the XTTS model separately.<br />
+But if you want everything to "just work" <strong>without fighting with pip, PATH, or broken dependencies</strong> — use the provided <code>.venv</code> and <code>TTSModel</code>.</p>
+</blockquote>
 <hr />
 <p>✅ <strong>Done! You’re ready to build your first talking AI agent.</strong></p>
 
