@@ -65,7 +65,7 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 ## 📚 Get Started
 
-See [UnityNeuroSpeech official website](https://hardcodedev777.github.io/unityneurospeech).
+See [UnityNeuroSpeech official website](https://hardcodedev777.github.io/UnityNeuroSpeech/).
 
 ---
 
