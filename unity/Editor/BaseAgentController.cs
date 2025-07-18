@@ -39,6 +39,11 @@ namespace UnityNeuroSpeech.Editor
         /// Action invoked after TTS playback finishes
         /// </summary>
         [HideInInspector] public Action AfterTTS { get; set; }
+        /// <summary>
+        /// Action invoked after STT transcription
+        /// </summary>
+        [HideInInspector] public Action AfterSTT { get; set; }
+
         private int _responseCount;
 
         // STT
@@ -185,6 +190,9 @@ namespace UnityNeuroSpeech.Editor
             if (res == null) return;
 
             _output = res.Result;
+
+            AfterSTT?.Invoke();
+
             await SafeExecutionUtils.SafeExecute("SendMessage", SendMessage, _output);
         }
         #endregion

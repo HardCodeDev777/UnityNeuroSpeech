@@ -15,8 +15,9 @@ namespace UnityNeuroSpeech.Runtime
         /// <param name="beh">Behaviour to attach</param>
         public static void SetBehaviourToAgent<T>(T agent, AgentBehaviour beh) where T: MonoBehaviour, IAgent
         {
-            agent.AfterTTS += beh.AfterTTS;
             agent.BeforeTTS += beh.BeforeTTS;
+            agent.AfterTTS += beh.AfterTTS;
+            agent.AfterSTT += beh.AfterSTT;
         }
     }
 }

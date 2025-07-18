@@ -12,6 +12,7 @@ namespace UnityNeuroSpeech.Runtime
     {
         public Action<AgentState> BeforeTTS { get; set; }
         public Action AfterTTS { get; set; }
+        public Action AfterSTT { get; set; }
     }
 
     /// <summary>
@@ -35,9 +36,14 @@ namespace UnityNeuroSpeech.Runtime
         public abstract void BeforeTTS(AgentState state);
 
         /// <summary>
-        /// Called after receiving and playing the TTS response
+        /// Called after receiving and playing the Text-To-Speech response
         /// </summary>
         public abstract void AfterTTS();
+
+        /// <summary>
+        /// Called after Speech-To-Text transcription
+        /// </summary>
+        public abstract void AfterSTT();
     }
 
     /// <summary>
