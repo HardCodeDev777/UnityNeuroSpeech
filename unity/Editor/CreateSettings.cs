@@ -122,7 +122,7 @@ namespace UnityNeuroSpeech.Editor
 
                 // Replace the system prompt to explicitly instruct the model to use only these emotions.
                 // (Note: some smaller models might still mess up, even with strict prompts.)
-                createAgentScriptContent = createAgentScriptContent.Replace("For example: <angry>, <happy>, <sad>, etc.", $"You can only use this emotions: {emotionsString}. WRITE THEM ONLY LIKE I SAID.");
+                createAgentScriptContent = createAgentScriptContent.Replace("For example: <angry>, <happy>, <sad>, etc.", $"You can only use these emotions: {emotionsString}. WRITE THEM ONLY LIKE I SAID.");
 
                 // Turn the template into a real editor window script.
                 createAgentScriptContent = createAgentScriptContent.Replace("CreateAgentTemplate", "CreateAgent");
