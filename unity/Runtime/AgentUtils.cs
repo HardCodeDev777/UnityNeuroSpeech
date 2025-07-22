@@ -18,9 +18,6 @@ namespace UnityNeuroSpeech.Runtime
     /// <summary>
     /// Base class to define agent behavior
     /// </summary>
-    // For now it only supports pre/post-TTS hooks,
-    // since I don't see much use for anything else (yet).
-    // But future expansion is possible.
     public abstract class AgentBehaviour : MonoBehaviour
     {
         /// <summary>
