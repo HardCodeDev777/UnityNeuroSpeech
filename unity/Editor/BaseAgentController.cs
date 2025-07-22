@@ -57,6 +57,7 @@ namespace UnityNeuroSpeech.Editor
         /// </summary>
         private string _output;
 
+        // TTS
         [Header("TTS")]
         [SerializeField] private AudioSource _responseAudioSource;
 
@@ -65,12 +66,12 @@ namespace UnityNeuroSpeech.Editor
         /// Used to prevent unnecessary API requests when this script is disabled
         /// </summary>
         private bool _stopRequesting;
+        private string _ollamaURI;
         private List<ChatMessage> _chatHistory = new();
         private IChatClient _chatClient;
 
         private void Awake()
         {
-            // At the moment, it's only used for proper logging. In future updates, it might become much more useful.
             string json;
             try
             {
@@ -83,7 +84,7 @@ namespace UnityNeuroSpeech.Editor
             }
             var data = JsonUtility.FromJson<JsonData>(json);
             LogUtils.logLevel = data.logLevel;
-
+            _ollamaURI = data.ollamaURI;
 
             SafeExecutionUtils.SafeExecute("InitOllama", InitOllama, agentSettings.systemPrompt, agentSettings.modelName);
 
@@ -100,7 +101,7 @@ namespace UnityNeuroSpeech.Editor
             var builder = Host.CreateApplicationBuilder(new HostApplicationBuilderSettings
             { DisableDefaults = true });
 
-            builder.Services.AddChatClient(new OllamaChatClient("http://localhost:11434", modelName));
+            builder.Services.AddChatClient(new OllamaChatClient(_ollamaURI, modelName));
 
             _chatClient = builder.Build().Services.GetRequiredService<IChatClient>();
             _chatHistory.Add(new(ChatRole.System, systemPrompt));
@@ -183,7 +184,6 @@ namespace UnityNeuroSpeech.Editor
         /// <summary>
         /// Once the mic stops, send the transcribed text to Ollama
         /// </summary>
-        /// <param name="recordedAudio"></param>
         private async void OnRecordStop(AudioChunk recordedAudio)
         {
             var res = await _whisper.GetTextAsync(recordedAudio.Data, recordedAudio.Frequency, recordedAudio.Channels);

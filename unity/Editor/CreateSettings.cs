@@ -11,16 +11,18 @@ namespace UnityNeuroSpeech.Editor
 {
     internal sealed class CreateSettings : EditorWindow
     {
-        private int _selectedLogIndex;
-        private string[] _logOptions = new[] { "None", "Error", "All" };
-
         // I really wouldn't want someone to do this, but I personally like to throw all tools and assets into Assets/Imports.
         // In this case, path logic breaks, which obviously shouldn't happen.
         private bool _isFrameworkInAnotherFolder;
         private string _anotherFolderName;
 
-        private ReorderableList _emotionsReorderableList;
 
+        private int _selectedLogIndex;
+        private string[] _logOptions = new[] { "None", "Error", "All" };
+
+        private string _customOllamaURI;
+
+        private ReorderableList _emotionsReorderableList;
         private List<string> _emotions = new();
 
         [MenuItem("UnityNeuroSpeech/Create Settings")]
@@ -67,6 +69,10 @@ namespace UnityNeuroSpeech.Editor
             {
                 _anotherFolderName = EditorGUILayout.TextField(new GUIContent("Directory name", "For example, if you throw this framework in Assets\\MyImports\\Frameworks, then write \"MyImports/Frameworks\""), _anotherFolderName);
             }
+
+            EditorGUILayout.LabelField("Advanced", EditorStyles.boldLabel);
+
+            _customOllamaURI = EditorGUILayout.TextField(new GUIContent("Custom Ollama URI", "If empty, Ollama URI will be default \"localhost:11434\""), _customOllamaURI);
 
             if (GUILayout.Button("Save"))
             {
@@ -133,13 +139,9 @@ namespace UnityNeuroSpeech.Editor
                 File.WriteAllText(createAgentScriptPath, createAgentScriptContent);
 
                 // Save the settings into a JSON file.   
-                string finalSettingsPath;
-                if (_isFrameworkInAnotherFolder) finalSettingsPath = $"Assets/{_anotherFolderName}/UnityNeuroSpeech/Resources/Settings/UnityNeuroSpeechSettings.json";
-                else finalSettingsPath = $"Assets/UnityNeuroSpeech/Resources/Settings/UnityNeuroSpeechSettings.json";    
-         
-                var data = new JsonData(LogUtils.logLevel);
+                var data = new JsonData(LogUtils.logLevel, string.IsNullOrEmpty(_customOllamaURI)? "http://localhost:11434" : _customOllamaURI);
                 var json = JsonUtility.ToJson(data, true);
-                File.WriteAllText(finalSettingsPath, json);
+                File.WriteAllText("Assets/Resources/Settings/UnityNeuroSpeechSettings.json", json);
 
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
