@@ -32,13 +32,14 @@
     - `UnityNeuroSpeech.X.X.X.rar` – main framework files  
     - `default.venv.rar` – Python environment for the TTS server  
     - `TTSModel.rar` – pretrained XTTS model
-    - `Setup/` - folder with files for quick automatic setup
+    - `Setup.rar` - iles for quick automatic setup
 
 2. Create a new empty folder anywhere on your computer (name it however you like).
+3. Unpack `Setup.rar`
 3. Drag all the following into that folder:
 
-    - The entire `Setup/` folder (contents only)
-    - The three `.rar` archives mentioned above
+    - Contents from `Setup.rar`
+    - Three other `.rar` archives mentioned above
 
 4. Run `RunPowershell.bat`
 
