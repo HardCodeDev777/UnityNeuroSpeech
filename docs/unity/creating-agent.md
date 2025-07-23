@@ -29,18 +29,21 @@ You will see the window with these settings:
 2. Add a `Dropdown` with at least three options and a `Button`.
 3. Add an `AudioSource` to your scene.
 4. Create an empty `GameObject` and attach the following scripts:
-   - `WhisperManager`
-   - `MicrophoneRecord`
-   - `YourAgentNameController`
-   - `SetupWhisperPath`
+
+    - `WhisperManager`
+    - `MicrophoneRecord`
+    - `YourAgentNameController`
+    - `SetupWhisperPath`
+   
 5. Configure the scripts:
 
 #### 🔧 `WhisperManager`
 - Leave `Model Path` empty.
 - Turn off:
-  - `Is Model Path In StreamingAssets`
-  - `Init On Awake`
-  - `Use VAD`
+
+    - `Is Model Path In StreamingAssets`
+    - `Init On Awake`
+    - `Use VAD`
 - Set `Language` to `auto`.
 
 #### 🎙 `MicrophoneRecord`

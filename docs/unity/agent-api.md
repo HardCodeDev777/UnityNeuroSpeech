@@ -8,7 +8,7 @@ Easily trigger events based on your agent’s emotion, response count, or messag
 
 ## 🕹️ Handle Agent State
 
-The Agent API is simple and elegant — **just 4 methods and 2 classes**.
+The Agent API is simple and elegant — **just 5 methods and 2 classes**.
 
 To use `UnityNeuroSpeech Agent API` you need to:
 1. Create a new MonoBehaviour script.
@@ -19,6 +19,7 @@ Once you do that, you will need to implement three abstract methods:
   - Start
   - BeforeTTS
   - AfterTTS
+  - AfterSTT
 
 Also, you need to create a field with your `YourAgentNameController` type (in this example, `AlexController`). Your code will look like this:
 
@@ -33,6 +34,8 @@ public class AlexBehaviour : AgentBehaviour
     public override void AfterTTS() {}
 
     public override void BeforeTTS(AgentState state) {}
+    
+    public override void AfterSTT() {}
 
     public override void Start() {}
 }
@@ -44,6 +47,7 @@ public class AlexBehaviour : AgentBehaviour
 
 - **AfterTTS** - Called after the audio is played.
 - **BeforeTTS** - Called before sending text to the TTS model.
+- **AfterSTT** - Called after STT model transcribed microphone input.
 - **Start** - Same as MonoBehaviour’s Start(), but required. Use it to bind your behaviour to an agent:
 
 ```csharp
@@ -66,6 +70,7 @@ public override void Start() => AgentManager.SetBehaviourToAgent(_alexAgentContr
 ```csharp
 [HideInInspector] public Action<AgentState> BeforeTTS { get; set; }
 [HideInInspector] public Action AfterTTS { get; set; }
+[HideInInspector] public Action AfterSTT { get; set; }
 ```
 
 This lets UnityNeuroSpeech know when to call your methods at the right moments.
@@ -98,6 +103,8 @@ public class AlexBehaviour : AgentBehaviour
             else if (state.emotion == "sad") Debug.Log("AI is not happy...");
         }
     }
+    
+    public override void AfterSTT() {}
 
     public override void Start() => AgentManager.SetBehaviourToAgent(_alexAgentController, this);
 }
@@ -127,14 +134,12 @@ namespace UnityNeuroSpeech.Runtime
     {
         public Action<AgentState> BeforeTTS { get; set; }
         public Action AfterTTS { get; set; }
+        public Action AfterSTT { get; set; }
     }
 
     /// <summary>
     /// Base class to define agent behavior
     /// </summary>
-    // For now it only supports pre/post-TTS hooks,
-    // since I don't see much use for anything else (yet).
-    // But future expansion is possible.
     public abstract class AgentBehaviour : MonoBehaviour
     {
         /// <summary>
@@ -150,9 +155,14 @@ namespace UnityNeuroSpeech.Runtime
         public abstract void BeforeTTS(AgentState state);
 
         /// <summary>
-        /// Called after receiving and playing the TTS response
+        /// Called after receiving and playing the Text-To-Speech response
         /// </summary>
         public abstract void AfterTTS();
+
+        /// <summary>
+        /// Called after Speech-To-Text transcription
+        /// </summary>
+        public abstract void AfterSTT();
     }
 
     /// <summary>
@@ -199,8 +209,9 @@ public static class AgentManager
     /// <param name="beh">Behaviour to attach</param>
     public static void SetBehaviourToAgent<T>(T agent, AgentBehaviour beh) where T: MonoBehaviour, IAgent
     {
-        agent.AfterTTS += beh.AfterTTS;
         agent.BeforeTTS += beh.BeforeTTS;
+        agent.AfterTTS += beh.AfterTTS;
+        agent.AfterSTT += beh.AfterSTT;
     }
 }
 ```

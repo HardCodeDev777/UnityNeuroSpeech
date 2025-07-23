@@ -1,5 +1,5 @@
 site_name: UnityNeuroSpeech
-site_url: https://hardcodedev777.github.io/unityneurospeech
+site_url: https://hardcodedev777.github.io/UnityNeuroSpeech
 theme:
   name: material
   logo: media/logo.png
@@ -31,9 +31,6 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/HardCodeDev777/UnityNeuroSpeech
-  analytics:
-    provider: google
-    tracking_id: G-X9H2RHNQ7G
 markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
