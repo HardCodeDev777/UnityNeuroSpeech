@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://hardcodedev777.github.io/unityneurospeech/quickstart/">
+        <link rel="canonical" href="https://hardcodedev777.github.io/UnityNeuroSpeech/quickstart/">
       
       
         <link rel="prev" href="..">
@@ -51,16 +51,6 @@
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -821,36 +811,35 @@
 <hr />
 <h2 id="base-setup">⚙️ Base Setup</h2>
 <ol>
-<li>Go to the <a href="https://github.com/HardCodeDev777/UnityNeuroSpeech">UnityNeuroSpeech GitHub repository</a> and download the following <strong>three <code>.rar</code> files</strong> from the latest Release:</li>
+<li>
+<p>Go to the <a href="https://github.com/HardCodeDev777/UnityNeuroSpeech">UnityNeuroSpeech GitHub repository</a> and download the following <strong>four files</strong> from the latest Release:</p>
+<ul>
 <li><code>UnityNeuroSpeech.X.X.X.rar</code> – main framework files  </li>
 <li><code>default.venv.rar</code> – Python environment for the TTS server  </li>
-<li>
-<p><code>TTSModel.rar</code> – pretrained XTTS model</p>
-</li>
-<li>
-<p>Extract all archives to the same directory. After extraction:</p>
-</li>
-<li>
-<p>Inside <code>UnityNeuroSpeech/</code> you’ll find:</p>
-<ul>
-<li>a <code>.unitypackage</code>  </li>
-<li>a <code>Server/</code> folder  </li>
-<li>a <code>run_server.bat</code> file<br />
- ⚠️ <strong>Do not import the <code>Server</code> folder or <code>.bat</code> file into Unity. Keep them outside the project directory.</strong></li>
+<li><code>TTSModel.rar</code> – pretrained XTTS model</li>
+<li><code>Setup.rar</code> - iles for quick automatic setup</li>
 </ul>
+</li>
+<li>
+<p>Create a new empty folder anywhere on your computer (name it however you like).</p>
+</li>
+<li>Unpack <code>Setup.rar</code></li>
+<li>
+<p>Drag all the following into that folder:</p>
+<ul>
+<li>Contents from <code>Setup.rar</code></li>
+<li>Three other <code>.rar</code> archives mentioned above</li>
+</ul>
+</li>
+<li>
+<p>Run <code>RunPowershell.bat</code></p>
+</li>
+<li>
+<p>After setup finishes, you'll see a new folder <code>UnityNeuroSpeech X.X.X</code>. Open it and drag the <code>.unitypackage</code> into your Unity project. <strong>Do not move or import the other files. Keep them outside the Unity project folder.</strong></p>
 </li>
 <li>
 <p>Place your <code>.wav</code> voice files into <code>Server/Voices</code>.<br />
    Each file must follow the naming pattern: <code>en_voice.wav</code>, <code>ru_voice.wav</code>, etc.</p>
-</li>
-<li>
-<p>Move the extracted <code>.venv</code> folder (from <code>default.venv.rar</code>) into the <code>Server/</code> folder.</p>
-</li>
-<li>
-<p>Move the extracted <code>TTSModel/</code> folder (from <code>TTSModel.rar</code>) into the <code>Server/</code> folder as well.</p>
-</li>
-<li>
-<p>Import the <code>.unitypackage</code> into your Unity project.</p>
 </li>
 <li>
 <p>In the <code>UnityNeuroSpeech</code> folder, you’ll see an empty <code>Whisper/</code> folder. Drop your Whisper <code>.bin</code> model file into it.</p>
@@ -859,11 +848,6 @@
 <blockquote>
 <p>Some folders (like <code>Whisper/</code>) may contain <code>.txt</code> placeholder files.<br />
 These are only used to ensure Unity exports the folder. You can safely delete them after setup.</p>
-</blockquote>
-<hr />
-<blockquote>
-<p>You can also manually install your own Python environment and download the XTTS model separately.<br />
-But if you want everything to "just work" <strong>without fighting with pip, PATH, or broken dependencies</strong> — use the provided <code>.venv</code> and <code>TTSModel</code>.</p>
 </blockquote>
 <hr />
 <p>✅ <strong>Done! You’re ready to build your first talking AI agent.</strong></p>
@@ -875,8 +859,6 @@ But if you want everything to "just work" <strong>without fighting with pip, PAT
 
 
 
-
-  
 
 
 

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://hardcodedev777.github.io/unityneurospeech/unity/creating-agent/">
+        <link rel="canonical" href="https://hardcodedev777.github.io/UnityNeuroSpeech/unity/creating-agent/">
       
       
         <link rel="prev" href="../configure-settings/">
@@ -51,16 +51,6 @@
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -958,21 +948,31 @@ You will see the window with these settings:</p>
 <li>Create a <code>Canvas</code> in your scene.</li>
 <li>Add a <code>Dropdown</code> with at least three options and a <code>Button</code>.</li>
 <li>Add an <code>AudioSource</code> to your scene.</li>
-<li>Create an empty <code>GameObject</code> and attach the following scripts:</li>
+<li>
+<p>Create an empty <code>GameObject</code> and attach the following scripts:</p>
+<ul>
 <li><code>WhisperManager</code></li>
 <li><code>MicrophoneRecord</code></li>
 <li><code>YourAgentNameController</code></li>
 <li><code>SetupWhisperPath</code></li>
-<li>Configure the scripts:</li>
+</ul>
+</li>
+<li>
+<p>Configure the scripts:</p>
+</li>
 </ol>
 <h4 id="whispermanager">🔧 <code>WhisperManager</code></h4>
 <ul>
 <li>Leave <code>Model Path</code> empty.</li>
-<li>Turn off:</li>
+<li>
+<p>Turn off:</p>
+<ul>
 <li><code>Is Model Path In StreamingAssets</code></li>
 <li><code>Init On Awake</code></li>
 <li><code>Use VAD</code></li>
 <li>Set <code>Language</code> to <code>auto</code>.</li>
+</ul>
+</li>
 </ul>
 <h4 id="microphonerecord">🎙 <code>MicrophoneRecord</code></h4>
 <ul>
@@ -1023,8 +1023,6 @@ You will see the window with these settings:</p>
 
 
 
-
-  
 
 
 

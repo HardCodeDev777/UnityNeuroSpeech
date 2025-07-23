@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://hardcodedev777.github.io/unityneurospeech/unity/agent-api/">
+        <link rel="canonical" href="https://hardcodedev777.github.io/UnityNeuroSpeech/unity/agent-api/">
       
       
         <link rel="prev" href="../building-game/">
@@ -51,16 +51,6 @@
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -890,7 +880,7 @@
 <p>Easily trigger events based on your agent’s emotion, response count, or message using the <code>UnityNeuroSpeech Agent API</code>.</p>
 <hr />
 <h2 id="handle-agent-state">🕹️ Handle Agent State</h2>
-<p>The Agent API is simple and elegant — <strong>just 4 methods and 2 classes</strong>.</p>
+<p>The Agent API is simple and elegant — <strong>just 5 methods and 2 classes</strong>.</p>
 <p>To use <code>UnityNeuroSpeech Agent API</code> you need to:
 1. Create a new MonoBehaviour script.
 2. Add <code>using UnityNeuroSpeech.Runtime;</code> on top of your code.
@@ -898,7 +888,8 @@
 <p>Once you do that, you will need to implement three abstract methods:
   - Start
   - BeforeTTS
-  - AfterTTS</p>
+  - AfterTTS
+  - AfterSTT</p>
 <p>Also, you need to create a field with your <code>YourAgentNameController</code> type (in this example, <code>AlexController</code>). Your code will look like this:</p>
 <div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
 <span class="k">using</span><span class="w"> </span><span class="nn">UnityNeuroSpeech.Runtime</span><span class="p">;</span>
@@ -911,6 +902,8 @@
 
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">BeforeTTS</span><span class="p">(</span><span class="n">AgentState</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AfterSTT</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -919,6 +912,7 @@
 <ul>
 <li><strong>AfterTTS</strong> - Called after the audio is played.</li>
 <li><strong>BeforeTTS</strong> - Called before sending text to the TTS model.</li>
+<li><strong>AfterSTT</strong> - Called after STT model transcribed microphone input.</li>
 <li><strong>Start</strong> - Same as MonoBehaviour’s Start(), but required. Use it to bind your behaviour to an agent:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">AgentManager</span><span class="p">.</span><span class="n">SetBehaviourToAgent</span><span class="p">(</span><span class="n">_alexAgentController</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
@@ -935,6 +929,7 @@
 <p><code>SetBehaviourToAgent</code> function connects your AgentBehaviour to the agent's internal hooks:</p>
 <div class="highlight"><pre><span></span><code><span class="na">[HideInInspector]</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">AgentState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">BeforeTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="na">[HideInInspector]</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="n">AfterTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="na">[HideInInspector]</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="n">AfterSTT</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <p>This lets UnityNeuroSpeech know when to call your methods at the right moments.</p>
 <hr />
@@ -960,6 +955,8 @@
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AfterSTT</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">AgentManager</span><span class="p">.</span><span class="n">SetBehaviourToAgent</span><span class="p">(</span><span class="n">_alexAgentController</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -981,14 +978,12 @@
 <span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="o">&lt;</span><span class="n">AgentState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">BeforeTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="n">AfterTTS</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="n">AfterSTT</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
 <span class="w">    </span><span class="c1">/// Base class to define agent behavior</span>
 <span class="w">    </span><span class="c1">/// &lt;/summary&gt;</span>
-<span class="w">    </span><span class="c1">// For now it only supports pre/post-TTS hooks,</span>
-<span class="w">    </span><span class="c1">// since I don&#39;t see much use for anything else (yet).</span>
-<span class="w">    </span><span class="c1">// But future expansion is possible.</span>
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AgentBehaviour</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
@@ -1004,9 +999,14 @@
 <span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">BeforeTTS</span><span class="p">(</span><span class="n">AgentState</span><span class="w"> </span><span class="n">state</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
-<span class="w">        </span><span class="c1">/// Called after receiving and playing the TTS response</span>
+<span class="w">        </span><span class="c1">/// Called after receiving and playing the Text-To-Speech response</span>
 <span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
 <span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AfterTTS</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="w">        </span><span class="c1">/// Called after Speech-To-Text transcription</span>
+<span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AfterSTT</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="c1">/// &lt;summary&gt;</span>
@@ -1050,8 +1050,9 @@
 <span class="w">    </span><span class="c1">/// &lt;param name=&quot;beh&quot;&gt;Behaviour to attach&lt;/param&gt;</span>
 <span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="n">SetBehaviourToAgent</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">agent</span><span class="p">,</span><span class="w"> </span><span class="n">AgentBehaviour</span><span class="w"> </span><span class="n">beh</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span><span class="p">,</span><span class="w"> </span><span class="n">IAgent</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">agent</span><span class="p">.</span><span class="n">AfterTTS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">beh</span><span class="p">.</span><span class="n">AfterTTS</span><span class="p">;</span>
 <span class="w">        </span><span class="n">agent</span><span class="p">.</span><span class="n">BeforeTTS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">beh</span><span class="p">.</span><span class="n">BeforeTTS</span><span class="p">;</span>
+<span class="w">        </span><span class="n">agent</span><span class="p">.</span><span class="n">AfterTTS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">beh</span><span class="p">.</span><span class="n">AfterTTS</span><span class="p">;</span>
+<span class="w">        </span><span class="n">agent</span><span class="p">.</span><span class="n">AfterSTT</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">beh</span><span class="p">.</span><span class="n">AfterSTT</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1067,8 +1068,6 @@
 
 
 
-
-  
 
 
 
