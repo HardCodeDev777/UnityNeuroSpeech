@@ -27,19 +27,18 @@
 
 ## ⚙️ Base Setup
 
-1. Go to the [UnityNeuroSpeech GitHub repository](https://github.com/HardCodeDev777/UnityNeuroSpeech) and download the following **four files** from the latest Release:
+1. Go to the [UnityNeuroSpeech GitHub repository](https://github.com/HardCodeDev777/UnityNeuroSpeech) and download the following **three files** from the latest Release:
 
-    - `UnityNeuroSpeech.X.X.X.rar` – main framework files  
-    - `default.venv.rar` – Python environment for the TTS server  
-    - `TTSModel.rar` – pretrained XTTS model
-    - `Setup.rar` - iles for quick automatic setup
+    - `UnityNeuroSpeech.X.X.X.zip` – main framework files
+    - `TTSModel.zip` – pretrained XTTS model
+    - `Setup.zip` - files for quick automatic setup
 
 2. Create a new empty folder anywhere on your computer (name it however you like).
-3. Unpack `Setup.rar`
+3. Unpack `Setup.zip`
 3. Drag all the following into that folder:
 
-    - Contents from `Setup.rar`
-    - Three other `.rar` archives mentioned above
+    - Contents from `Setup.zip`
+    - Two other `.zip` archives mentioned above
 
 4. Run `RunPowershell.bat`
 
