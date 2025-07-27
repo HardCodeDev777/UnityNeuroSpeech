@@ -5,42 +5,27 @@ Write-Host "Make sure that all these files are in one folder."
 # --------------------------------------------------------------------------------
 
 $FrameworkVer = Read-Host "Enter version of UnityNeuroSpeech(e.g. 1.0.0): "
-
-# --------------------------------------------------------------------------------
-
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
-$SevenZip = Join-Path $ScriptDir "7z/7z.exe"
 
 # --------------------------------------------------------------------------------
 
-Write-Host "Unpacking ""UnityNeuroSpeech.$FrameworkVer.rar""..."
+Write-Host "Unpacking ""UnityNeuroSpeech.$FrameworkVer.zip""..."
 
-$UNSRar = Join-Path $ScriptDir "UnityNeuroSpeech.$FrameworkVer.rar"
-$UNSOut = $ScriptDir
+$UNSZip = Join-Path $ScriptDir "UnityNeuroSpeech.$FrameworkVer.zip"
+$UNSOut = Join-Path $ScriptDir "UnityNeuroSpeech.$FrameworkVer"
 
-& $SevenZip x $UNSRar -o"$UNSOut" -y > $null 2>&1
+Expand-Archive -Path $UNSZiP -DestinationPath $UNSOut -Force
 
 Write-Host "Done!"
 
 # --------------------------------------------------------------------------------
 
-Write-Host "Unpacking ""default.venv.rar""..."
+Write-Host "Unpacking ""TTSModel.zip""..."
 
-$VenvRar = Join-Path $ScriptDir "default.venv.rar"
-$VenvOut = Join-Path $ScriptDir "UnityNeuroSpeech $FrameworkVer\Server"
+$TTSZip = Join-Path $ScriptDir "TTSModel.zip"
+$TTSOut = Join-Path $ScriptDir "UnityNeuroSpeech.$FrameworkVer\Server"
 
-& $SevenZip x $VenvRar -o"$VenvOut" -y > $null 2>&1
-
-Write-Host "Done!"
-
-# --------------------------------------------------------------------------------
-
-Write-Host "Unpacking ""TTSModel.rar""..."
-
-$TTSRar = Join-Path $ScriptDir "TTSModel.rar"
-$TTSOut = Join-Path $ScriptDir "UnityNeuroSpeech $FrameworkVer\Server"
-
-& $SevenZip x $TTSRar -o"$TTSOut" -y > $null 2>&1
+Expand-Archive -Path $TTSZip -DestinationPath $TTSOut -Force
 
 Write-Host "Done!"
 
