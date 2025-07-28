@@ -16,12 +16,21 @@ namespace UnityNeuroSpeech.Editor
         private bool _isFrameworkInAnotherFolder;
         private string _anotherFolderName;
 
+        // Custom URIs
+        private string _customOllamaURI, _customTTSURI;
 
+        // Log level
         private int _selectedLogIndex;
         private string[] _logOptions = new[] { "None", "Error", "All" };
 
-        private string _customOllamaURI;
+        // Request timeout
+        private int _requestTimeout = 30;
 
+        // Python debug
+        private bool _enablePythonDebug;
+        private string _absolutePathToMainPy;
+
+        // Emotions
         private ReorderableList _emotionsReorderableList;
         private List<string> _emotions = new();
 
@@ -58,21 +67,50 @@ namespace UnityNeuroSpeech.Editor
         }
         private void OnGUI()
         {
+            // General
             EditorGUILayout.LabelField("General", EditorStyles.boldLabel);
-            _selectedLogIndex = EditorGUILayout.Popup("Logging type", _selectedLogIndex, _logOptions);
 
-            _emotionsReorderableList.DoLayoutList();
+            _selectedLogIndex = EditorGUILayout.Popup("Logging type", _selectedLogIndex, _logOptions);
 
             _isFrameworkInAnotherFolder = EditorGUILayout.Toggle(new GUIContent("Not in Assets folder", "If framework isn't in Assets directory, turn it on"), _isFrameworkInAnotherFolder);
 
-            if (_isFrameworkInAnotherFolder)
-            {
-                _anotherFolderName = EditorGUILayout.TextField(new GUIContent("Directory name", "For example, if you throw this framework in Assets\\MyImports\\Frameworks, then write \"MyImports/Frameworks\""), _anotherFolderName);
-            }
+            if (!_isFrameworkInAnotherFolder) GUI.enabled = false;
 
+            _anotherFolderName = EditorGUILayout.TextField(new GUIContent("Directory name", "For example, if you throw this framework in Assets\\MyImports\\Frameworks, then write \"MyImports/Frameworks\""), _anotherFolderName);
+
+            if (!_isFrameworkInAnotherFolder) GUI.enabled = true;
+
+            EditorGUILayout.Space(10);
+
+            // Agents
+            EditorGUILayout.LabelField("Agents", EditorStyles.boldLabel);
+
+            _emotionsReorderableList.DoLayoutList();
+
+            _requestTimeout = EditorGUILayout.IntField(new GUIContent("Request timeout(secs)", "Timeout for requests to local TTS Python sever"), _requestTimeout);
+
+            EditorGUILayout.Space(10);
+
+            // Python
+            EditorGUILayout.LabelField("Python", EditorStyles.boldLabel);
+
+            _enablePythonDebug = EditorGUILayout.Toggle(new GUIContent("Enable Python debug", "If framework isn't in Assets directory, turn it on"), _enablePythonDebug);
+
+            if (!_enablePythonDebug) GUI.enabled = false;
+
+            _absolutePathToMainPy = EditorGUILayout.TextField(new GUIContent("Absolute path to main.py"), _absolutePathToMainPy);
+
+            if (!_enablePythonDebug) GUI.enabled = true;
+
+            EditorGUILayout.Space(10);
+
+            // Advanced
             EditorGUILayout.LabelField("Advanced", EditorStyles.boldLabel);
 
             _customOllamaURI = EditorGUILayout.TextField(new GUIContent("Custom Ollama URI", "If empty, Ollama URI will be default \"localhost:11434\""), _customOllamaURI);
+
+            _customTTSURI = EditorGUILayout.TextField(new GUIContent("Custom TTS URI", "If empty, TTS URI will be default \"localhost:7777\""), _customTTSURI);
+            //
 
             if (GUILayout.Button("Save"))
             {
@@ -85,6 +123,7 @@ namespace UnityNeuroSpeech.Editor
                 };
 
                 string createAgentScriptContent, createAgentScriptPath;
+
                 if (_isFrameworkInAnotherFolder)
                 {
                     // If the framework is placed in another folder, we'll have to change paths in multiple places.
@@ -98,7 +137,7 @@ namespace UnityNeuroSpeech.Editor
                     createAgentScriptPath = Application.dataPath + $"/{_anotherFolderName}/UnityNeuroSpeech/Editor/CreateAgent.cs";
 
                     // Get the generated script content from disk.
-                    createAgentScriptContent = File.ReadAllText(Application.dataPath + $"/{_anotherFolderName}/UnityNeuroSpeech/Editor/CreateAgent.cs");
+                    createAgentScriptContent = File.ReadAllText(createAgentScriptPath);
 
                     // Replace asset paths inside the code to match the custom folder.
                     createAgentScriptContent = createAgentScriptContent.Replace("UnityNeuroSpeech/Runtime", $"{_anotherFolderName}/UnityNeuroSpeech/Runtime");
@@ -113,7 +152,7 @@ namespace UnityNeuroSpeech.Editor
 
                     createAgentScriptPath = Application.dataPath + $"/UnityNeuroSpeech/Editor/CreateAgent.cs";
 
-                    createAgentScriptContent = File.ReadAllText(Application.dataPath + $"/UnityNeuroSpeech/Editor/CreateAgent.cs");
+                    createAgentScriptContent = File.ReadAllText(createAgentScriptPath);
                 }
 
                 if (_emotions.Count == 0)
@@ -138,8 +177,30 @@ namespace UnityNeuroSpeech.Editor
 
                 File.WriteAllText(createAgentScriptPath, createAgentScriptContent);
 
-                // Save the settings into a JSON file.   
-                var data = new JsonData(LogUtils.logLevel, string.IsNullOrEmpty(_customOllamaURI)? "http://localhost:11434" : _customOllamaURI);
+                // Changing debug in Python
+                string mainPyContent;
+                mainPyContent = File.ReadAllText(_absolutePathToMainPy);
+
+                if (_enablePythonDebug)
+                {
+                    // If debug already enabled
+                    if (mainPyContent.Contains("# warnings.simplefilter(action='ignore', category=FutureWarning)")) return;
+
+                    mainPyContent = mainPyContent.Replace("warnings.simplefilter(action='ignore', category=FutureWarning", "# warnings.simplefilter(action='ignore', category=FutureWarning)");
+                    mainPyContent = mainPyContent.Replace("sys.stdout = open(os.devnull, 'w')", "# sys.stdout = open(os.devnull, 'w')");
+                    mainPyContent = mainPyContent.Replace("logging.disable(logging.CRITICAL)", "# logging.disable(logging.CRITICAL)");
+                }
+                else
+                {
+                    mainPyContent = mainPyContent.Replace("# warnings.simplefilter(action='ignore', category=FutureWarning)", "warnings.simplefilter(action='ignore', category=FutureWarning");
+                    mainPyContent = mainPyContent.Replace("# sys.stdout = open(os.devnull, 'w')", "sys.stdout = open(os.devnull, 'w')");
+                    mainPyContent = mainPyContent.Replace("# logging.disable(logging.CRITICAL)", "logging.disable(logging.CRITICAL)");
+                }
+                File.WriteAllText(_absolutePathToMainPy, mainPyContent);
+
+                // Save the settings into a JSON file(unreadable code moment)   
+                var data = new JsonData(LogUtils.logLevel, string.IsNullOrEmpty(_customOllamaURI) ? "http://localhost:11434" : _customOllamaURI, string.IsNullOrEmpty(_customTTSURI) ? "http://localhost:7777" : _customTTSURI, _requestTimeout);
+
                 var json = JsonUtility.ToJson(data, true);
                 File.WriteAllText("Assets/Resources/Settings/UnityNeuroSpeechSettings.json", json);
 

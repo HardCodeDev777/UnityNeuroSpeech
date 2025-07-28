@@ -60,6 +60,8 @@ namespace UnityNeuroSpeech.Editor
         // TTS
         [Header("TTS")]
         [SerializeField] private AudioSource _responseAudioSource;
+        private string _ttsURI;
+        private int _requestTimeout;
 
         // Ollama       
         /// <summary>
@@ -85,6 +87,8 @@ namespace UnityNeuroSpeech.Editor
             var data = JsonUtility.FromJson<JsonData>(json);
             LogUtils.logLevel = data.logLevel;
             _ollamaURI = data.ollamaURI;
+            _ttsURI = data.TTSURI;
+            _requestTimeout = data.requestTimeout;
 
             SafeExecutionUtils.SafeExecute("InitOllama", InitOllama, agentSettings.systemPrompt, agentSettings.modelName);
 
@@ -204,12 +208,13 @@ namespace UnityNeuroSpeech.Editor
         private IEnumerator PostText(string text)
         {
             var bodyRaw = System.Text.Encoding.UTF8.GetBytes(text);
-            using (var request = new UnityWebRequest("http://localhost:7777/tts", "POST"))
+            using (var request = new UnityWebRequest(_ttsURI, "POST"))
             {
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                request.downloadHandler = new DownloadHandlerAudioClip("http://localhost:7777/tts", AudioType.WAV);
+                request.downloadHandler = new DownloadHandlerAudioClip(_ttsURI, AudioType.WAV);
                 request.SetRequestHeader("Content-Type", "text/plain");
 
+                request.timeout = _requestTimeout;
                 yield return request.SendWebRequest();
 
                 if (request.result != UnityWebRequest.Result.Success) LogUtils.LogError($"[UnityNeuroSpeech] TTS server probably is not running! Full error message: {request.error}");
