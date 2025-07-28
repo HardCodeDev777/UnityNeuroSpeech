@@ -27,7 +27,7 @@ namespace UnityNeuroSpeech.Editor
         private int _requestTimeout = 30;
 
         // Python debug
-        private bool _enablePythonDebug;
+        private bool _enablePythonDebug = true;
         private string _absolutePathToMainPy;
 
         // Emotions
@@ -189,12 +189,14 @@ namespace UnityNeuroSpeech.Editor
                     mainPyContent = mainPyContent.Replace("warnings.simplefilter(action='ignore', category=FutureWarning", "# warnings.simplefilter(action='ignore', category=FutureWarning)");
                     mainPyContent = mainPyContent.Replace("sys.stdout = open(os.devnull, 'w')", "# sys.stdout = open(os.devnull, 'w')");
                     mainPyContent = mainPyContent.Replace("logging.disable(logging.CRITICAL)", "# logging.disable(logging.CRITICAL)");
+                    mainPyContent = mainPyContent.Replace("# print(f\"Python executable(for gebug): {sys.executable}\")", "print(f\"Python executable(for gebug): {sys.executable}\")");
                 }
                 else
                 {
                     mainPyContent = mainPyContent.Replace("# warnings.simplefilter(action='ignore', category=FutureWarning)", "warnings.simplefilter(action='ignore', category=FutureWarning");
                     mainPyContent = mainPyContent.Replace("# sys.stdout = open(os.devnull, 'w')", "sys.stdout = open(os.devnull, 'w')");
                     mainPyContent = mainPyContent.Replace("# logging.disable(logging.CRITICAL)", "logging.disable(logging.CRITICAL)");
+                    mainPyContent = mainPyContent.Replace("print(f\"Python executable(for gebug): {sys.executable}\")", "# print(f\"Python executable(for gebug): {sys.executable}\")");
                 }
                 File.WriteAllText(_absolutePathToMainPy, mainPyContent);
 
