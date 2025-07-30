@@ -38,6 +38,10 @@ VOICES = {
 
 app = Flask(__name__)
 
+print("*************************************************")
+print("UnityNeuroSpeech TTS server is running!")
+print("UnityNeuroSpeech official GitHub repository: https://github.com/HardCodeDev777/UnityNeuroSpeech")
+print("*************************************************")
 
 @app.route('/')
 def index():
