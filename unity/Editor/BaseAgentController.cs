@@ -12,9 +12,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Whisper.Utils;
 using UnityNeuroSpeech.Runtime;
-using LogUtils = UnityNeuroSpeech.Utils.LogUtils;
 using UnityNeuroSpeech.Utils;
 using UnityNeuroSpeech.Shared;
+using LogUtils = UnityNeuroSpeech.Utils.LogUtils;
 
 namespace UnityNeuroSpeech.Editor
 {

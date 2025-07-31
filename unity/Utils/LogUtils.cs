@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace UnityNeuroSpeech.Utils
@@ -15,7 +14,7 @@ namespace UnityNeuroSpeech.Utils
     /// </summary>
     internal static class LogUtils
     {
-        public static LogLevel logLevel = LogLevel.All;
+        public static LogLevel logLevel;
 
         public static void LogMessage(string msg)
         {

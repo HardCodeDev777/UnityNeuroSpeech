@@ -1,9 +1,15 @@
 #if UNITY_EDITOR
-using UnityNeuroSpeech.Runtime;
-using UnityNeuroSpeech.Utils;
+using System;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityNeuroSpeech.Runtime;
+using UnityNeuroSpeech.Utils;
+using Whisper;
+using Whisper.Utils;
+using LogUtils = UnityNeuroSpeech.Utils.LogUtils;
 
 namespace UnityNeuroSpeech.Editor
 {
@@ -11,31 +17,79 @@ namespace UnityNeuroSpeech.Editor
     {
         private string _modelName = "qwen3:1.7b", _agentName = "Alex", _systemPrompt = "Your answer must be fewer than 50 words";
 
+        private Button _enableMicButton;
+        private Sprite _enableMicSprite, _disableMicSprite;
+        private AudioSource _responseAudioSource;
+
         // Commented out to avoid conflicts with the generated CreateAgent.cs file.
         // [MenuItem("UnityNeuroSpeech/Create Agent")]
         // public static void ShowWindow() => GetWindow<CreateAgent>("CreateAgent");
 
         private void OnGUI()
         {
-            EditorGUILayout.LabelField("Agent parametrs", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField("Agent parameters", EditorStyles.boldLabel);
+
+            if (string.IsNullOrEmpty(_modelName)) GUI.backgroundColor = Color.red;
 
             _modelName = EditorGUILayout.TextField("Model name", _modelName);
+
+            GUI.backgroundColor = Color.white;
+
+            if (string.IsNullOrEmpty(_agentName)) GUI.backgroundColor = Color.red;
+
             _agentName = EditorGUILayout.TextField("Agent name", _agentName);
+
+            GUI.backgroundColor = Color.white;
 
             _systemPrompt = EditorGUILayout.TextField("System prompt", _systemPrompt);
 
+            EditorGUILayout.Space(10);
+
+            EditorGUILayout.LabelField("Agent component values", EditorStyles.boldLabel);
+
+            if (_enableMicButton == null) GUI.backgroundColor = Color.red;
+
+            _enableMicButton = (Button)EditorGUILayout.ObjectField(new GUIContent("Microphone enable Button"), _enableMicButton, typeof(Button), true);
+
+            GUI.backgroundColor = Color.white;
+
+            if (_enableMicSprite == null) GUI.backgroundColor = Color.red;
+
+            _enableMicSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Enabled microphone Sprite"), _enableMicSprite, typeof(Sprite), true);
+
+            GUI.backgroundColor = Color.white;
+
+            if (_disableMicSprite == null) GUI.backgroundColor = Color.red;
+
+            _disableMicSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Disabled microphone Sprite"), _disableMicSprite, typeof(Sprite), true);
+
+            GUI.backgroundColor = Color.white;
+
+            if (_responseAudioSource == null) GUI.backgroundColor = Color.red;
+
+            _responseAudioSource = (AudioSource)EditorGUILayout.ObjectField(new GUIContent("Response AudioSource"), _responseAudioSource, typeof(AudioSource), true);
+
+            GUI.backgroundColor = Color.white;
+
             if (GUILayout.Button("Generate Agent"))
             {
-                // The foundation. Without this, nothing works.
-                if (string.IsNullOrEmpty(_modelName) || string.IsNullOrEmpty(_modelName))
+                if (string.IsNullOrEmpty(_modelName) || string.IsNullOrEmpty(_agentName))
                 {
-                    LogUtils.LogError("[UnityNeuroSpeech] \"Model name\" and \"Agent name\" must not be empty!");
+                    LogUtils.LogError("[UnityNeuroSpeech] \"Model name\" and \"Agent name\" can't be empty!");
                     return;
                 }
 
-                SafeExecutionUtils.SafeExecute("CreateAgentSettings", CreateAgentSettings);
+                if(_enableMicButton == null || _disableMicSprite == null || _enableMicSprite == null || _responseAudioSource == null)
+                {
+                    LogUtils.LogError("[UnityNeuroSpeech] All values in \"Agent component values\" can't be empty!");
+                    return;
+                }
+
+                    SafeExecutionUtils.SafeExecute("CreateAgentSettings", CreateAgentSettings);
                 SafeExecutionUtils.SafeExecute("CreateAgentController", CreateAgentController);
             }
+
+            if (GUILayout.Button("Create agent in scene")) SafeExecutionUtils.SafeExecute("CreateAgentInScene", CreateAgentInScene);
         }
 
         private void CreateAgentSettings()
@@ -84,6 +138,46 @@ namespace UnityNeuroSpeech.Editor
             File.WriteAllText(path, content);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private void CreateAgentInScene()
+        {
+            // Find GameObject in scene
+            var unsManager = GameObject.Find("UnityNeuroSpeechManager");
+
+            if (unsManager == null)
+            {
+                LogUtils.LogError("[UnityNeuroSpeech] Create UnityNeuroSpeechManager in your scene!");
+                return;
+            }
+
+            // Create new GameObject in scene
+            var agentObj = new GameObject($"{_agentName}Agent");
+
+            // Find generated agent controller
+            var agentControllerType = AppDomain.CurrentDomain.GetAssemblies().SelectMany(asm => asm.GetTypes()).FirstOrDefault(t => t.Name == $"{_agentName}Controller");
+
+            if (agentControllerType == null)
+            {
+                LogUtils.LogError($"[UnityNeuroSpeech] No {_agentName}Controlller was found!");
+                return;
+            }
+
+            // Add component with this type
+            var agentController = agentObj.AddComponent(agentControllerType);
+
+            // Find generated agent settings
+            var settingsPath = $"Assets/UnityNeuroSpeech/Runtime/GeneratedAgents/Agent_{_agentName}.asset";
+            var generatedAgentSettings = AssetDatabase.LoadAssetAtPath<AgentSettings>(settingsPath);
+
+            // Change values in component
+            agentControllerType.GetField("agentSettings")?.SetValue(agentController, generatedAgentSettings);
+            agentController.ChangePrivateField("_whisper", unsManager.GetComponent<WhisperManager>());
+            agentController.ChangePrivateField("_microphoneRecord", unsManager.GetComponent<MicrophoneRecord>());
+            agentController.ChangePrivateField("_enableMicButton", _enableMicButton);
+            agentController.ChangePrivateField("_enableMicSprite", _enableMicSprite);
+            agentController.ChangePrivateField("_disableMicSprite", _disableMicSprite);
+            agentController.ChangePrivateField("_responseAudioSource", _responseAudioSource);
         }
     }
 }

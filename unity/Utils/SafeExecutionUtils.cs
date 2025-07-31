@@ -66,7 +66,7 @@ namespace UnityNeuroSpeech.Utils
             try
             {
                 func.Invoke();
-                LogUtils.LogMessage($"[UnityNeuroSpeech]  {methodName} completed successfully!");
+                LogUtils.LogMessage($"[UnityNeuroSpeech] {methodName} completed successfully!");
             }
             catch (Exception ex)
             {

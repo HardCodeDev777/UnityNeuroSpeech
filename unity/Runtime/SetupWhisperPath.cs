@@ -7,7 +7,7 @@ namespace UnityNeuroSpeech.Runtime
     public class SetupWhisperPath : MonoBehaviour
     {
         [SerializeField] private WhisperManager _whisper;
-        [SerializeField, Tooltip("Without Assets directory. For example: UnityNeuroSpeech/Whisper/ggml-medium.bin")] private string _modelPath;
+        [SerializeField] private string _modelPath;
 
         private async void Awake()
         {

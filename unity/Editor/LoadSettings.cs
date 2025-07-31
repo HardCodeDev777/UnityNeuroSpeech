@@ -1,3 +1,4 @@
+
 #if UNITY_EDITOR
 using UnityNeuroSpeech.Utils;
 using UnityEditor;
@@ -19,9 +20,10 @@ namespace UnityNeuroSpeech.Editor
             // Attempts to access the JSON settings file
             try
             {
-                dataText = Resources.Load<TextAsset>("Settings/UnityNeuroSpeechSettings").text;   
+                dataText = Resources.Load<TextAsset>("Settings/UnityNeuroSpeechSettings").text;
             }
-            catch{
+            catch
+            {
                 LogUtils.LogMessage("[UnityNeuroSpeech] No settings file was found.");
                 return;
             }
