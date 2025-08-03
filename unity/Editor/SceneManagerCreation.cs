@@ -25,13 +25,13 @@ namespace UnityNeuroSpeech.Editor
 
             if (_microphoneDropdown == null) GUI.backgroundColor = Color.red;
 
-            _microphoneDropdown = (Dropdown)EditorGUILayout.ObjectField(new GUIContent("Microphone Dropdown"), _microphoneDropdown, typeof(Dropdown), true);
+            _microphoneDropdown = (Dropdown)EditorGUILayout.ObjectField(new GUIContent("Microphone dropdown"), _microphoneDropdown, typeof(Dropdown), true);
 
             GUI.backgroundColor = Color.white;
 
             if (string.IsNullOrEmpty(_whisperModelPath)) GUI.backgroundColor = Color.red;
 
-            _whisperModelPath = EditorGUILayout.TextField(new GUIContent("Whisper Model Path", "\"Without Assets directory. For example: UnityNeuroSpeech/Whisper/ggml-medium.bin\""), _whisperModelPath);
+            _whisperModelPath = EditorGUILayout.TextField(new GUIContent("Whisper model path", "Without \"Assets\" directory. For example: \"UnityNeuroSpeech/Whisper/ggml-medium.bin\""), _whisperModelPath);
 
             GUI.backgroundColor = Color.white;
 

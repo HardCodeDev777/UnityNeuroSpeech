@@ -49,29 +49,29 @@ namespace UnityNeuroSpeech.Editor
 
             if (_enableMicButton == null) GUI.backgroundColor = Color.red;
 
-            _enableMicButton = (Button)EditorGUILayout.ObjectField(new GUIContent("Microphone enable Button"), _enableMicButton, typeof(Button), true);
+            _enableMicButton = (Button)EditorGUILayout.ObjectField(new GUIContent("Microphone enable button"), _enableMicButton, typeof(Button), true);
 
             GUI.backgroundColor = Color.white;
 
             if (_enableMicSprite == null) GUI.backgroundColor = Color.red;
 
-            _enableMicSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Enabled microphone Sprite"), _enableMicSprite, typeof(Sprite), true);
+            _enableMicSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Enabled microphone sprite"), _enableMicSprite, typeof(Sprite), true);
 
             GUI.backgroundColor = Color.white;
 
             if (_disableMicSprite == null) GUI.backgroundColor = Color.red;
 
-            _disableMicSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Disabled microphone Sprite"), _disableMicSprite, typeof(Sprite), true);
+            _disableMicSprite = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Disabled microphone sprite"), _disableMicSprite, typeof(Sprite), true);
 
             GUI.backgroundColor = Color.white;
 
             if (_responseAudioSource == null) GUI.backgroundColor = Color.red;
 
-            _responseAudioSource = (AudioSource)EditorGUILayout.ObjectField(new GUIContent("Response AudioSource"), _responseAudioSource, typeof(AudioSource), true);
+            _responseAudioSource = (AudioSource)EditorGUILayout.ObjectField(new GUIContent("Response audiosource"), _responseAudioSource, typeof(AudioSource), true);
 
             GUI.backgroundColor = Color.white;
 
-            if (GUILayout.Button("Generate Agent"))
+            if (GUILayout.Button("Generate agent"))
             {
                 if (string.IsNullOrEmpty(_modelName) || string.IsNullOrEmpty(_agentName))
                 {
@@ -79,13 +79,13 @@ namespace UnityNeuroSpeech.Editor
                     return;
                 }
 
-                if(_enableMicButton == null || _disableMicSprite == null || _enableMicSprite == null || _responseAudioSource == null)
+                if (_enableMicButton == null || _disableMicSprite == null || _enableMicSprite == null || _responseAudioSource == null)
                 {
                     LogUtils.LogError("[UnityNeuroSpeech] All values in \"Agent component values\" can't be empty!");
                     return;
                 }
 
-                    SafeExecutionUtils.SafeExecute("CreateAgentSettings", CreateAgentSettings);
+                SafeExecutionUtils.SafeExecute("CreateAgentSettings", CreateAgentSettings);
                 SafeExecutionUtils.SafeExecute("CreateAgentController", CreateAgentController);
             }
 

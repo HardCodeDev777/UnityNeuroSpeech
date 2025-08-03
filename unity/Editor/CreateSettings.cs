@@ -1,3 +1,4 @@
+
 #if UNITY_EDITOR
 using UnityNeuroSpeech.Utils;
 using System.Collections.Generic;
@@ -74,9 +75,9 @@ namespace UnityNeuroSpeech.Editor
 
             _isFrameworkInAnotherFolder = EditorGUILayout.Toggle(new GUIContent("Not in Assets folder", "If framework isn't in Assets directory, turn it on"), _isFrameworkInAnotherFolder);
 
-            if (!_isFrameworkInAnotherFolder) 
-            { 
-                GUI.enabled = false; 
+            if (!_isFrameworkInAnotherFolder)
+            {
+                GUI.enabled = false;
                 GUI.backgroundColor = Color.white;
             }
 
@@ -110,7 +111,7 @@ namespace UnityNeuroSpeech.Editor
             // Python
             EditorGUILayout.LabelField("Python", EditorStyles.boldLabel);
 
-            _enablePythonDebug = EditorGUILayout.Toggle(new GUIContent("Enable Python debug", "If framework isn't in Assets directory, turn it on"), _enablePythonDebug);
+            _enablePythonDebug = EditorGUILayout.Toggle(new GUIContent("Enable Python debug", "Enables debug for local TTS Python server"), _enablePythonDebug);
 
             if (string.IsNullOrEmpty(_absolutePathToMainPy)) GUI.backgroundColor = Color.red;
 
