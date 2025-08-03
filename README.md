@@ -76,6 +76,22 @@ indie dev from Russia who just wanted to make AI talk in Unity.
 
 ---
 
+## Special Thanks 🎉
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/danreid70">
+        <img src="https://avatars.githubusercontent.com/u/50158816?v=4" width="100px;" alt="User 1"/>
+        <br />
+        <sub><b>Dan</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
+
 ## 🗒️ License
 
 UnityNeuroSpeech is licensed under the **MIT License**.
