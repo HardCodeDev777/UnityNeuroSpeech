@@ -18,6 +18,7 @@ nav:
   - Quickstart: quickstart.md
   - Unity:
       - Configure Settings: unity/configure-settings.md
+      - Creating UNS Manager: unity/creating-uns-manager.md
       - Creating Agent: unity/creating-agent.md
       - Building Game: unity/building-game.md
       - API Reference: unity/agent-api.md

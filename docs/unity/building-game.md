@@ -9,7 +9,7 @@ But don’t worry — **it takes less than a minute to set it up properly.**
 
 After building your game, go to the `Managed` folder.
 
-There, create folders that match the `Model Path` value you set in the `SetupWhisperPath` script.
+There, create folders that match value you set in the `SceneManagerCreation` window in `Model path` field.
 
 ### 🗒️ Example 1
 
@@ -34,7 +34,7 @@ You’ll need to run this `.bat` file **every time you launch the game**.
 
 ---
 
-### 💡 Tip: Make a Startup Script
+## 💡 Tip: Make a Startup Script
 
 You can make a simple `.bat` file that launches both the TTS server and the game:
 

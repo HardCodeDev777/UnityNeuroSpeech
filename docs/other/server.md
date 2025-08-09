@@ -2,7 +2,6 @@
 
 ---
 
-
 The Text-to-Speech model used in `UnityNeuroSpeech` is **Coqui XTTS**.
 To balance performance and usability, the framework runs it through a small Python script that launches a local server.
 

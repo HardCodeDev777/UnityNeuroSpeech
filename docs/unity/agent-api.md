@@ -218,8 +218,8 @@ public static class AgentManager
 
 ---
 
-#### 😎 You now have full control over your agents!
+**😎 You now have full control over your agents!**
 
 Design smart behaviours, react to emotions, and go full sentient AI 🤖
 
-UnityNeuroSpeech puts the power in your hands.
+**UnityNeuroSpeech puts the power in your hands.**
