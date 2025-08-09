@@ -5,6 +5,11 @@
 ![Last commit](https://img.shields.io/github/last-commit/HardCodeDev777/UnityNeuroSpeech?color=%2305991d)
 ![Tag](https://img.shields.io/github/v/tag/HardCodeDev777/UnityNeuroSpeech)
 ![Top lang](https://img.shields.io/github/languages/top/HardCodeDev777/UnityNeuroSpeech)
+&nbsp;
+
+![quality](https://img.shields.io/badge/quality-best-brightgreen)
+![code_style](https://img.shields.io/badge/code_style-goat-lightgrey)
+![Rickrolls](https://img.shields.io/badge/hidden_rickrolls-0-blue)
 
 <div align="center">
   <img src="docs/media/logo.png">
