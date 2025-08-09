@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/quickstart/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/other/faq/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/other/licenses/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/other/server/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/unity/agent-api/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/unity/building-game/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/unity/configure-settings/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
     </url>
     <url>
          <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/unity/creating-agent/</loc>
-         <lastmod>2025-07-27</lastmod>
+         <lastmod>2025-08-09</lastmod>
+    </url>
+    <url>
+         <loc>https://hardcodedev777.github.io/UnityNeuroSpeech/unity/creating-uns-manager/</loc>
+         <lastmod>2025-08-09</lastmod>
     </url>
 </urlset>

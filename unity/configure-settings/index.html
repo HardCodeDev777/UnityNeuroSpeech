@@ -14,7 +14,7 @@
         <link rel="prev" href="../../quickstart/">
       
       
-        <link rel="next" href="../creating-agent/">
+        <link rel="next" href="../creating-uns-manager/">
       
       
       <link rel="icon" href="../../media/favicon.png">
@@ -469,9 +469,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general-settings" class="md-nav__link">
+  <a href="#general" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 General Settings
+      🔥 General
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐍 Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      😎 Advanced
     </span>
   </a>
   
@@ -486,6 +513,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creating-uns-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating UNS Manager
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -723,9 +773,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general-settings" class="md-nav__link">
+  <a href="#general" class="md-nav__link">
     <span class="md-ellipsis">
-      🧩 General Settings
+      🔥 General
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐍 Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      😎 Advanced
     </span>
   </a>
   
@@ -757,12 +834,12 @@
 
 <h1 id="configure-settings">⚙️ Configure Settings</h1>
 <hr />
-<p>To use UnityNeuroSpeech, you will need to configure some initial settings. Don’t worry — it only takes a minute.</p>
+<p>To use UnityNeuroSpeech, you will need to configure some initial settings. Don’t worry — it only takes a few minutes.</p>
 <hr />
 <h2 id="opening-the-settings">🛠 Opening the Settings</h2>
 <p>Go to <strong>UnityNeuroSpeech → Create Settings</strong> in the Unity toolbar.<br />
 You’ll see the window with these settings:</p>
-<h4 id="general-settings">🧩 General Settings</h4>
+<h3 id="general">🔥 General</h3>
 <table>
 <thead>
 <tr>
@@ -773,29 +850,77 @@ You’ll see the window with these settings:</p>
 <tbody>
 <tr>
 <td><strong>Logging type</strong></td>
-<td>Controls how much info you want to see in the Unity console.</td>
-</tr>
-<tr>
-<td><strong>Emotions</strong></td>
-<td>Add at least one emotion. These are passed to the LLM.</td>
+<td>Controls how much info you want to see in the Unity console</td>
 </tr>
 <tr>
 <td><strong>Not in Assets folder</strong></td>
-<td>Check this if you moved the framework folder outside the default location.</td>
+<td>Check this if you moved the framework folder outside the default location</td>
 </tr>
 <tr>
-<td><strong>Directory name</strong> <em>(if above is checked)</em></td>
-<td>For example: if your folder path is <code>Assets/MyImports/Frameworks</code>, enter <code>MyImports/Frameworks</code>.</td>
+<td><strong>Directory name</strong></td>
+<td>For example: if your folder path is <code>Assets/MyImports/Frameworks</code>, enter <code>MyImports/Frameworks</code></td>
 </tr>
+</tbody>
+</table>
+<h3 id="agents">🤖 Agents</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Emotions</strong></td>
+<td>Add at least one emotion. These are passed to the LLM</td>
+</tr>
+<tr>
+<td><strong>Request timeout(secs)</strong></td>
+<td>Timeout for requests to local TTS Python server</td>
+</tr>
+</tbody>
+</table>
+<h3 id="python">🐍 Python</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Enable Python debug</strong></td>
+<td>Enables debug for local TTS Python server</td>
+</tr>
+<tr>
+<td><strong>Absolute path to main.py</strong></td>
+<td>Full path to <code>main.py</code> in <code>Server/</code> folder</td>
+</tr>
+</tbody>
+</table>
+<h3 id="advanced">😎 Advanced</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><strong>Custom Ollama URI</strong></td>
 <td>If empty, Ollama URI will be default "localhost:11434"</td>
 </tr>
+<tr>
+<td><strong>Custom TTS URI</strong></td>
+<td>If empty, TTS URI will be default "localhost:7777"</td>
+</tr>
 </tbody>
 </table>
-<hr />
 <p>📝 When you're done, click <strong>Save</strong>.<br />
-You can now create your first talkable agent!</p>
+Now you can work with UnityNeuroSpeech and start setting up your scene!</p>
 
 
 
