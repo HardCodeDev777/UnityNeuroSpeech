@@ -126,7 +126,7 @@ namespace UnityNeuroSpeech.Editor
 
             _customOllamaURI = EditorGUILayout.TextField(new GUIContent("Custom Ollama URI", "If empty, Ollama URI will be default \"localhost:11434\""), _customOllamaURI);
 
-            _customTTSURI = EditorGUILayout.TextField(new GUIContent("Custom TTS URI", "If empty, TTS URI will be default \"localhost:7777\""), _customTTSURI);
+            _customTTSURI = EditorGUILayout.TextField(new GUIContent("Custom TTS URI", "If empty, TTS URI will be default \"http://localhost:7777/tts\""), _customTTSURI);
             //
 
             if (GUILayout.Button("Save"))
@@ -245,7 +245,7 @@ namespace UnityNeuroSpeech.Editor
                 File.WriteAllText(_absolutePathToMainPy, mainPyContent);
 
                 // Save the settings into a JSON file(unreadable code moment)   
-                var data = new JsonData(LogUtils.logLevel, string.IsNullOrEmpty(_customOllamaURI) ? "http://localhost:11434" : _customOllamaURI, string.IsNullOrEmpty(_customTTSURI) ? "http://localhost:7777" : _customTTSURI, _requestTimeout);
+                var data = new JsonData(LogUtils.logLevel, string.IsNullOrEmpty(_customOllamaURI) ? "http://localhost:11434" : _customOllamaURI, string.IsNullOrEmpty(_customTTSURI) ? "http://localhost:7777/tts" : _customTTSURI, _requestTimeout);
 
                 var json = JsonUtility.ToJson(data, true);
 
