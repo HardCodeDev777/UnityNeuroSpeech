@@ -81,7 +81,7 @@ indie dev from Russia who just wanted to make AI talk in Unity.
 
 ---
 
-## Special Thanks 🎉
+## 🤝 Special Thanks 
 
 <table>
   <tr>
