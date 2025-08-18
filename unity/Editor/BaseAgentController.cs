@@ -208,10 +208,10 @@ namespace UnityNeuroSpeech.Editor
         private IEnumerator PostText(string text)
         {
             var bodyRaw = System.Text.Encoding.UTF8.GetBytes(text);
-            using (var request = new UnityWebRequest(_ttsURI, "POST"))
+            using (var request = new UnityWebRequest($"{_ttsURI}/tts", "POST"))
             {
                 request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                request.downloadHandler = new DownloadHandlerAudioClip(_ttsURI, AudioType.WAV);
+                request.downloadHandler = new DownloadHandlerAudioClip($"{_ttsURI}/tts", AudioType.WAV);
                 request.SetRequestHeader("Content-Type", "text/plain");
 
                 request.timeout = _requestTimeout;
