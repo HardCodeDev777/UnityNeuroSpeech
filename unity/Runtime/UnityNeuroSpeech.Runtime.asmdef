@@ -1,0 +1,18 @@
+{
+    "name": "UnityNeuroSpeech.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "com.whisper.unity",
+        "UnityNeuroSpeech.Utils",
+        "UnityNeuroSpeech.Shared"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
