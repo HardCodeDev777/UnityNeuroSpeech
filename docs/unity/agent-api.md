@@ -2,26 +2,29 @@
 
 ---
 
-Easily trigger events based on your agent’s emotion, response count, or message using the `UnityNeuroSpeech Agent API`.
+Fully control and monitor your agents with a clean and lightweight API.
 
 ---
 
 ## 🕹️ Handle Agent State
 
-The Agent API is simple and elegant — **just 5 methods and 2 classes**.
+The Agent API is simple and elegant — **just 6 methods and 2 classes**.
 
-To use `UnityNeuroSpeech Agent API` you need to:
-1. Create a new MonoBehaviour script.
-2. Add `using UnityNeuroSpeech.Runtime;` on top of your code.
-3. Derive from `AgentBehaviour` class.
+To use the `UnityNeuroSpeech Agent API`, you need to:
 
-Once you do that, you will need to implement three abstract methods:
-  - Start
-  - BeforeTTS
-  - AfterTTS
-  - AfterSTT
+1. Create a new `MonoBehaviour` script.  
+2. Add `using UnityNeuroSpeech.Runtime;` at the top.  
+3. Derive your class from `AgentBehaviour`.
 
-Also, you need to create a field with your `YourAgentNameController` type (in this example, `AlexController`). Your code will look like this:
+Once you do that, you must implement four abstract methods:
+
+- `Awake`
+- `BeforeTTS`
+- `AfterTTS`
+- `AfterSTT`
+
+You’ll also need a reference to your `YourAgentNameController` type (in this example, `AlexController`).  
+Your script should look like this:
 
 ```csharp
 using UnityEngine;
@@ -29,15 +32,15 @@ using UnityNeuroSpeech.Runtime;
 
 public class AlexBehaviour : AgentBehaviour
 {
-    [SerializeField] private AlexController _alexAgentController;
+    [SerializeField] private AlexController _alex;
 
+    public override void Awake() {}
+    
     public override void AfterTTS() {}
 
-    public override void BeforeTTS(AgentState state) {}
+    public override void BeforeTTS(int responseCount, string agentMessage, string emotion, string action) {}
     
-    public override void AfterSTT() {}
-
-    public override void Start() {}
+    public override void AfterSTT(string playerMessage) {}
 }
 ```
 
@@ -45,181 +48,55 @@ public class AlexBehaviour : AgentBehaviour
 
 ### 🔍 Methods Overview
 
-- **AfterTTS** - Called after the audio is played.
-- **BeforeTTS** - Called before sending text to the TTS model.
-- **AfterSTT** - Called after STT model transcribed microphone input.
-- **Start** - Same as MonoBehaviour’s Start(), but required. Use it to bind your behaviour to an agent:
+---
+
+- **AfterTTS** — Called after the audio playback finishes.  
+- **BeforeTTS** — Called before sending text to the TTS model.  
+- **AfterSTT** — Called after the STT model finishes transcribing microphone input.  
+- **Awake** — Works like `MonoBehaviour.Awake()`, but required.  
+  Use it to link your behaviour to an agent:
 
 ```csharp
-public override void Start() => AgentManager.SetBehaviourToAgent(_alexAgentController, this);
+public override void Awake() 
+{
+    AgentManager.SetBehaviourToAgent(_alex, this);
+    AgentManager.SetJsonDialogHistory(_alex, "AlexDialogHistory"); 
+    // or, if you use encryption:
+    AgentManager.SetJsonDialogHistory(_alex, "AlexDialogHistory", "yBIWJczdP7aSbSxB");
+}
 ```
 
 ---
 
-### 🟢 About AgentState struct:
-- responseCount: Number of total replies by the agent.
-- emotion: Emotion tag parsed from the LLM response (e.g. "happy", "sad").
-- agentMessage: Raw response from the LLM.
+### 💡 What Is `SetBehaviourToAgent()`?
 
 ---
 
-### 💡 What is `SetBehaviourToAgent()`?
-
-`SetBehaviourToAgent` function connects your AgentBehaviour to the agent's internal hooks:
+The `SetBehaviourToAgent()` method connects your `AgentBehaviour` to the agent’s internal event hooks:
 
 ```csharp
-[HideInInspector] public Action<AgentState> BeforeTTS { get; set; }
+[HideInInspector] public Action<int, string, string, string> BeforeTTS { get; set; }
 [HideInInspector] public Action AfterTTS { get; set; }
 [HideInInspector] public Action AfterSTT { get; set; }
 ```
 
-This lets UnityNeuroSpeech know when to call your methods at the right moments.
+This ensures UnityNeuroSpeech calls your methods at the correct moments.
 
 ---
 
-### 🤔 `IAgent` interface
+### 💡 What Is `SetJsonDialogHistory()`?
 
-Also, you might notice `IAgent` interface. You don’t need to use this interface yourself, because it powers the core subscription logic.
+If you use `SetJsonDialogHistory()`, all dialog data between the player and the LLM will be stored in a `.json` file inside `StreamingAssets/`, one file per agent.  
+The **second parameter** is the file name (without the `.json` extension).  
+The optional **third parameter** is a 16-character AES encryption key.
 
----
-
-### 🗒️ Example
-
-```csharp
-using UnityEngine;
-using UnityNeuroSpeech.Runtime;
-
-public class AlexBehaviour : AgentBehaviour
-{
-    [SerializeField] private AlexController _alexAgentController;
-
-    public override void AfterTTS() {}
-
-    public override void BeforeTTS(AgentState state)
-    {
-        if(state.responseCount == 5)
-        {
-            if (state.emotion == "happy") Debug.Log("AI is happy");
-            else if (state.emotion == "sad") Debug.Log("AI is not happy...");
-        }
-    }
-    
-    public override void AfterSTT() {}
-
-    public override void Start() => AgentManager.SetBehaviourToAgent(_alexAgentController, this);
-}
-```
-
-**Don't forget to attach your behaviour script to any `GameObject` in your scene.**
+If encryption is enabled (highly recommended), the player won’t be able to view dialog history in builds since it’s encrypted.  
+**To decrypt it in the Editor, see the “Useful Tools” section in the docs.**
 
 ---
 
-### 👀 Full API Reference
-
-
-`AgentUtils.cs`:
-
-```csharp
-// Handy utility script for keeping small agent-related features together instead of splitting them across many files
-
-using System;
-using UnityEngine;
-
-namespace UnityNeuroSpeech.Runtime
-{
-    /// <summary>
-    /// Interface used to identify agents and allow <see cref="AgentBehaviour"/> to subscribe to agent Actions
-    /// </summary>
-    public interface IAgent
-    {
-        public Action<AgentState> BeforeTTS { get; set; }
-        public Action AfterTTS { get; set; }
-        public Action AfterSTT { get; set; }
-    }
-
-    /// <summary>
-    /// Base class to define agent behavior
-    /// </summary>
-    public abstract class AgentBehaviour : MonoBehaviour
-    {
-        /// <summary>
-        /// Use this to bind the behaviour script to an agent.
-        /// Recommended: <see cref="AgentManager.SetBehaviourToAgent{T}(T, AgentBehaviour)"/>
-        /// </summary>
-        public abstract void Start();
-
-        /// <summary>
-        /// Called before sending input to the Text-To-Speech model
-        /// </summary>
-        /// <param name="state">Current agent state</param>
-        public abstract void BeforeTTS(AgentState state);
-
-        /// <summary>
-        /// Called after receiving and playing the Text-To-Speech response
-        /// </summary>
-        public abstract void AfterTTS();
-
-        /// <summary>
-        /// Called after Speech-To-Text transcription
-        /// </summary>
-        public abstract void AfterSTT();
-    }
-
-    /// <summary>
-    /// Lightweight structure representing the agent's internal state
-    /// </summary>
-    public readonly struct AgentState
-    {
-        /// <summary>
-        /// Total number of responses generated so far
-        /// </summary>
-        public readonly int responseCount;
-        /// <summary>
-        /// Agent's message (currently just the response from Ollama)
-        /// </summary>
-        public readonly string agentMessage;
-        /// <summary>
-        /// Emotion tag parsed from the response. It's a string like "happy", "sad", etc.
-        /// </summary>
-        public readonly string emotion;
-
-        public AgentState(int responseCount, string agentMessage, string emotion)
-        {
-            this.responseCount = responseCount;
-            this.agentMessage = agentMessage;
-            this.emotion = emotion;
-        }
-    }
-}
-```
-
-`AgentManager.cs`:
-
-```csharp
-/// <summary>
-/// Centralized manager for agents
-/// </summary>
-public static class AgentManager
-{
-    /// <summary>
-    /// Binds a behaviour script to an agent
-    /// </summary>
-    /// <typeparam name="T">Generated agent controller</typeparam>
-    /// <param name="agent">Agent instance</param>
-    /// <param name="beh">Behaviour to attach</param>
-    public static void SetBehaviourToAgent<T>(T agent, AgentBehaviour beh) where T: MonoBehaviour, IAgent
-    {
-        agent.BeforeTTS += beh.BeforeTTS;
-        agent.AfterTTS += beh.AfterTTS;
-        agent.AfterSTT += beh.AfterSTT;
-    }
-}
-```
+✅ Don’t forget to attach your behaviour script to a `GameObject` in the scene.
 
 ---
 
-**😎 You now have full control over your agents!**
-
-Design smart behaviours, react to emotions, and go full sentient AI 🤖
-
-**UnityNeuroSpeech puts the power in your hands.**
+😎 You now have full control over your agents!

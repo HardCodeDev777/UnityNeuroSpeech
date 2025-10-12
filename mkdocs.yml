@@ -1,4 +1,4 @@
-site_name: UnityNeuroSpeech
+site_name: UnityNeuroSpeech Docs
 site_url: https://hardcodedev777.github.io/UnityNeuroSpeech
 theme:
   name: material
@@ -14,18 +14,11 @@ theme:
     - search.suggest
     - header.autohide
 nav:
-  - Home: index.md
-  - Quickstart: quickstart.md
+  - Quickstart: index.md
   - Unity:
-      - Configure Settings: unity/configure-settings.md
-      - Creating UNS Manager: unity/creating-uns-manager.md
-      - Creating Agent: unity/creating-agent.md
-      - Building Game: unity/building-game.md
-      - API Reference: unity/agent-api.md
-  - Other:
-    - Python Server: other/server.md
-    - FAQ: other/faq.md
-    - Licenses: other/licenses.md
+      - Steps to make it work: unity/steps-to-make-it-work.md
+      - Agent API: unity/agent-api.md
+      - Useful Tools: unity/useful-tools.md
 repo_url: https://github.com/HardCodeDev777/UnityNeuroSpeech
 copyright: Copyright &copy; 2025 HardCodeDev
 extra:

@@ -4,3 +4,8 @@
 
 # MkDocs
 site/
+
+# Unity
+*.meta
+*.cs.meta
+*.asmdef.meta
