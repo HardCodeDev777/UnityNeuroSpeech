@@ -9,7 +9,6 @@
 
 ![quality](https://img.shields.io/badge/quality-best-brightgreen)
 ![code_style](https://img.shields.io/badge/code_style-goat-lightgrey)
-![Rickrolls](https://img.shields.io/badge/hidden_rickrolls-0-blue)
 
 <div align="center">
   <img src="docs/media/logo.png">
