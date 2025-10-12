@@ -49,12 +49,15 @@ No subscriptions, no accounts, no OpenAI API keys.
 |--------|--------------------------------------------------------------------------------------------|
 | 🎙️ **Voice Input** | Uses [whisper.unity](https://github.com/Macoron/whisper.unity) for accurate speech-to-text |
 | 🧠 **AI Brain (LLM)** | Easily connect to any local model via [Ollama](https://ollama.com)                         |
-| 🗣️ **Custom TTS** | Supports any voice with [Coqui XTTS](https://github.com/coqui-ai/TTS)                      |
+| 🗣️ **Custom TTS** | Supports any voice with [Coqui XTTS](https://github.com/idiap/coqui-ai-TTS)                      |
 | 😄 **Emotions** | Emotion tags (`<happy>`, `<sad>`, etc.) parsed automatically from LLM                      |
-| 🎛️ **Agent API** | Subscribe to events like `BeforeTTS()` or access `AgentState` directly                     |
-| 🛠️ **Editor Tools** | Create, manage and customize agents inside Unity Editor                                    |
-| 🧱 **No cloud** | All models and voice run locally on your machine                                           |
+| 🎬 **Actions** | Action tags (`<turn_off_lights>`, `<play_cutscene_123>`, etc.) also parsed automatically from LLM                      |
+| 🎛️ **Agent API** | Subscribe to events like `BeforeTTS()` to monitor your agents                  |
+| 📝 **History Saving in JSON** | Save dialog history between player and LLM in JSON with/without AES encryption                 |
+| 🛠️ **Editor Tools** | Create, manage and customize agents inside Unity Editor easily                                  |
+| 🧱 **No Cloud** | All models and voice run locally on your machine                                           |
 | 🌐 **Multilingual** | Works with over **15+ languages**, including English, Russian, Chinese, etc.               |
+| 🔊 **Multiple Voices and Languages for Multiple Agents** | Each Agent can have each voice file for any available laguage              |
 
 ---
 
@@ -62,8 +65,8 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 - 🧠 [`Microsoft.Extensions.AI`](https://learn.microsoft.com/en-us/dotnet/ai/) (Ollama)
 - 🎤 [`whisper.unity`](https://github.com/Macoron/whisper.unity)
-- 🐍 [Python Flask server](server/) (for TTS)
-- 🧊 [Coqui XTTS model](https://github.com/coqui-ai/TTS)
+- 🧊 [Coqui XTTS model](https://github.com/idiap/coqui-ai-TTS)
+- 🖥️ [UV](https://github.com/astral-sh/uv)
 - 🤖 Unity 6
 
 ---
@@ -76,8 +79,7 @@ See [UnityNeuroSpeech official website](https://hardcodedev777.github.io/UnityNe
 
 ## 😎 Who made this?
 
-UnityNeuroSpeech was created by [HardCodeDev](https://github.com/HardCodeDev777) —  
-indie dev from Russia who just wanted to make AI talk in Unity.
+UnityNeuroSpeech was created by [HardCodeDev](https://github.com/HardCodeDev777) —  one indie dev from Russia.
 
 ---
 
@@ -100,4 +102,4 @@ indie dev from Russia who just wanted to make AI talk in Unity.
 ## 🗒️ License
 
 UnityNeuroSpeech is licensed under the **MIT License**.
-For other Licenses, see [Licenses](docs/other/licenses.md).
+For other Licenses, see [Licenses](LICENSES.md).
