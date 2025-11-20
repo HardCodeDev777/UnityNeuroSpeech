@@ -41,7 +41,7 @@ powershell -ExecutionPolicy ByPass -c "$ProgressPreference='SilentlyContinue'; i
 echo [32mUV installed![0m
 echo.
 echo [32mInstalling coqui-tts via UV...[0m
-uv tool install coqui-tts >> setup.log 2>&1
+uv tool install --python 3.11 coqui-tts >> setup.log 2>&1
 echo [32mCoqui-tts installed![0m
 echo.
 
