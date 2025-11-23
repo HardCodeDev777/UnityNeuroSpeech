@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace UnityNeuroSpeech.Runtime
 {
+    /// <summary>
+    /// Stores dialog data for agent
+    /// </summary>
     [System.Serializable]
     internal struct DialogData
     {

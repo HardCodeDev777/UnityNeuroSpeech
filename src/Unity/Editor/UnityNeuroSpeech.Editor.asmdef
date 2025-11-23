@@ -4,11 +4,14 @@
     "references": [
         "GUID:ef0c22381d082cf42859c9541ea51b91",
         "GUID:edea228f55f9e7443b13a3d7a4d90956",
-        "GUID:07dcbb6497358493fa23aaaad4b6b054",
         "GUID:ae7834c736a73d14db57e296385a026c",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:b261ee2cfc313d2408ff72163ad3f8ba"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

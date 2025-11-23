@@ -15,12 +15,12 @@ namespace UnityNeuroSpeech.Utils
 
         public static void LogMessage(string msg)
         {
-            if (logLevel == LogLevel.All) Debug.Log(msg);
+            if (logLevel == LogLevel.All) Debug.Log($"[UnityNeuroSpeech] {msg}");
         }
 
         public static void LogError(string msg)
         {
-            if (logLevel == LogLevel.Error || logLevel == LogLevel.All) Debug.LogError(msg);
+            if (logLevel == LogLevel.Error || logLevel == LogLevel.All) Debug.LogError($"[UnityNeuroSpeech] {msg}");
         }
     }
 }

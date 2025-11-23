@@ -2,17 +2,17 @@
 
 ---
 
-Fully control and monitor your agents with a clean and lightweight API.
+Fully monitor your agents with a clean and lightweight API.
 
 ---
 
 ## 🕹️ Handle Agent State
 
-The Agent API is simple and elegant — **just 6 methods and 2 classes**.
+The Agent API is simple and elegant — **just 2 classes, 1 struct and 6 methods**.
 
 To use the `UnityNeuroSpeech Agent API`, you need to:
 
-1. Create a new `MonoBehaviour` script.  
+1. Create a new script.  
 2. Add `using UnityNeuroSpeech.Runtime;` at the top.  
 3. Derive your class from `AgentBehaviour`.
 
@@ -38,7 +38,7 @@ public class AlexBehaviour : AgentBehaviour
     
     public override void AfterTTS() {}
 
-    public override void BeforeTTS(int responseCount, string agentMessage, string emotion, string action) {}
+    public override void BeforeTTS(AgentState state) {}
     
     public override void AfterSTT(string playerMessage) {}
 }
@@ -95,8 +95,13 @@ If encryption is enabled (highly recommended), the player won’t be able to vie
 
 ---
 
-✅ Don’t forget to attach your behaviour script to a `GameObject` in the scene.
+### 🟢 About AgentState struct:
+- responseCount: Number of total replies by the agent.
+- emotion: Emotion tag parsed from the LLM response (e.g. "happy", "sad").
+- action: Action tag parsed from the LLM response (e.g. "open_door", "play_cutscene_123").
+- agentMessage: Raw response from the LLM.
+- userPrompt: Player's voice input.
 
 ---
 
-😎 You now have full control over your agents!
+✅ Don’t forget to attach your behaviour script to a `GameObject` in the scene.

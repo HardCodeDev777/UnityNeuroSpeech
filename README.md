@@ -20,6 +20,19 @@
 
 ---
 
+> [!IMPORTANT]
+> Full response time (from your speech to TTS generated voice) can sometimes take a minute or more right now.
+> This isn't a bug – it's the current reality of running powerful AI models locally and for free:
+> - Good STT (like Whisper) needs time to be accurate.
+> - Even small LLM (via Ollama) needs some time to think up a good response.
+> - Generating high-quality voice with TTS is also a complex and not fast task.
+> 
+> The key thing is: this framework is built on the most optimal and user-friendly local solutions available for each stage (STT, LLM, TTS). You have the freedom to choose and download your own models (like Whisper `.bin` for STT and any model for Ollama), to use any custom voice you want, to make it for different languages, to customize your agents and to find the perfect balance between speed and quality for your setup.
+> 
+> Also this project is actively maintained. With every update, I'm working on making it faster, more optimized, and easier to use!
+
+---
+
 UnityNeuroSpeech is a lightweight and open-source framework for creating **fully voice-interactive AI agents** inside Unity.  
 It connects:
 
@@ -57,6 +70,9 @@ No subscriptions, no accounts, no OpenAI API keys.
 | 🧱 **No Cloud** | All models and voice run locally on your machine                                           |
 | 🌐 **Multilingual** | Works with over **15+ languages**, including English, Russian, Chinese, etc.               |
 | 🔊 **Multiple Voices and Languages for Multiple Agents** | Each Agent can have each voice file for any available laguage              |
+| ⚡ **High Performance** | Uses **UniTask** instead of Coroutines and Tasks for optimal performance.             |
+| 🔧 **Full Build Support** | Full compatibility with both **Mono** and **IL2CPP** scripting backends.           |
+
 
 ---
 
@@ -70,6 +86,15 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 ---
 
+## ⚙️ Compatibility
+
+| Scripting backend | Windows | Linux/Mac | Other platforms    |
+|-------------------|---------|-----------|--------------------|
+| Mono              | ✅       | ❌         | ❌ (not planned)    |
+| ILC2PP            | ✅       | ❌         | ❌ (not planned)    |
+
+---
+
 ## 📚 Get Started
 
 See [UnityNeuroSpeech official website](https://hardcodedev777.github.io/UnityNeuroSpeech/).
@@ -78,23 +103,7 @@ See [UnityNeuroSpeech official website](https://hardcodedev777.github.io/UnityNe
 
 ## 😎 Who made this?
 
-UnityNeuroSpeech was created by [HardCodeDev](https://github.com/HardCodeDev777) —  one indie dev from Russia.
-
----
-
-## 🤝 Special Thanks 
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/danreid70">
-        <img src="https://avatars.githubusercontent.com/u/50158816?v=4" width="100px;" alt="User 1"/>
-        <br />
-        <sub><b>Dan</b></sub>
-      </a>
-    </td>
-  </tr>
-</table>
+UnityNeuroSpeech was created by [HardCodeDev](https://github.com/HardCodeDev777) —  solo dev from Russia.
 
 ---
 

@@ -1,12 +1,13 @@
 {
-    "name": "UnityNeuroSpeech.Runtime",
+    "name": "UnityNeuroSpeech.Shared",
     "rootNamespace": "",
     "references": [
-        "com.whisper.unity",
-        "UnityNeuroSpeech.Utils",
-        "UnityNeuroSpeech.Shared"
+        "GUID:ef0c22381d082cf42859c9541ea51b91"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone64"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

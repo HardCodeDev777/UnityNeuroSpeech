@@ -1,10 +1,11 @@
 {
-    "name": "UnityNeuroSpeech.Shared",
+    "name": "UnityNeuroSpeech.Utils",
     "rootNamespace": "",
-    "references": [
-        "GUID:ef0c22381d082cf42859c9541ea51b91"
+    "references": [],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone64"
     ],
-    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

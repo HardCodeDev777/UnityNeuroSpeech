@@ -43,4 +43,19 @@ Open an [issue](https://github.com/HardCodeDev777/UnityNeuroSpeech/issues) and d
 
 ---
 
-**Let’s make AI-in-Unity great together 🤝** 
+
+## 🤝 Special Thanks 
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/danreid70">
+        <img src="https://avatars.githubusercontent.com/u/50158816?v=4" width="100px;" alt="User 1"/>
+        <br />
+        <sub><b>Dan</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+

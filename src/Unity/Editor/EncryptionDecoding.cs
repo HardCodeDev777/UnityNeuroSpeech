@@ -13,18 +13,18 @@ namespace UnityNeuroSpeech.Editor
     internal sealed class EncryptionDecoding : EditorWindow
     {
         private Object _jsonToDecrypt;
-        private string _key;
-        private string _decryptedResult;
+        private string _key, _decryptedResult;
 
-        [MenuItem("UnityNeuroSpeech/Decode Encoded")]
-        public static void ShowWindow() => GetWindow<EncryptionDecoding>("DecodeEncoded");
+        [MenuItem("UnityNeuroSpeech/Tools/Encryption Decoding")]
+        public static void ShowWindow() => GetWindow<EncryptionDecoding>("EncryptionDecoding");
 
         private void OnGUI()
         {
             EditorGUILayout.LabelField("Data to decrypt", EditorStyles.boldLabel);
 
-            if (_jsonToDecrypt == null) GUI.backgroundColor = Color.red;
+            if (!_jsonToDecrypt) GUI.backgroundColor = Color.red;
 
+            // TODO: Why DefaultAsset?
             _jsonToDecrypt = EditorGUILayout.ObjectField(
                 new GUIContent("Json data", "Select json data you want to decrypt"), _jsonToDecrypt, typeof(DefaultAsset), false);
 
@@ -43,9 +43,9 @@ namespace UnityNeuroSpeech.Editor
 
             if (GUILayout.Button("Decrypt"))
             {
-                if (string.IsNullOrEmpty(_key) || _jsonToDecrypt == null)
+                if (string.IsNullOrEmpty(_key) || !_jsonToDecrypt)
                 {
-                    LogUtils.LogError("[UnityNeuroSpeech] Fields above can't be empty!");
+                    LogUtils.LogError("Fill all required fields!");
                     return;
                 }
 

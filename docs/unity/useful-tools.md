@@ -18,7 +18,7 @@ You only wait for the **LLM** (as usual) to generate a response — and you can 
 
 ---
 
-To access it, go to **UnityNeuroSpeech → Prompts Test**.
+To access it, go to **UnityNeuroSpeech → Tools → Prompts Test**.
 
 ---
 
@@ -32,7 +32,7 @@ This tool lets you decrypt and read them easily.
 
 ---
 
-To access it, go to **UnityNeuroSpeech → Decode Encoded**.
+To access it, go to **UnityNeuroSpeech → Tools → Decode Encoded**.
 
 Note about the **Key to encrypt** field:  
 You must use the same key you specified in your `AgentBehaviour` script.

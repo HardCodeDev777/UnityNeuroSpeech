@@ -9,10 +9,9 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using UnityNeuroSpeech.Runtime;
 using UnityNeuroSpeech.Shared;
 using UnityNeuroSpeech.Utils;
 
@@ -24,8 +23,8 @@ namespace UnityNeuroSpeech.Editor
         private string _prompt, _llmResponse;
         private Stopwatch _sw = new();
 
-        [MenuItem("UnityNeuroSpeech/Prompts Tests")]
-        public static void ShowWindow() => GetWindow<PromptTesting>("PromptsTests");
+        [MenuItem("UnityNeuroSpeech/Tools/Prompt Testing")]
+        public static void ShowWindow() => GetWindow<PromptTesting>("PromptTesting");
 
         private async void OnGUI()
         {
@@ -34,8 +33,10 @@ namespace UnityNeuroSpeech.Editor
             // Unity sometimes makes goofy errors without reason, so you will find some weird try-catch'es to fix them
             try
             {
-                if (_generatedSettings == null) GUI.backgroundColor = Color.red;
-                _generatedSettings = (AgentSettings)EditorGUILayout.ObjectField(new GUIContent("Generated agent settings", "Select ScriptableObject generated for agent"), _generatedSettings, typeof(AgentSettings), false);
+                if (!_generatedSettings) GUI.backgroundColor = Color.red;
+
+                _generatedSettings = (AgentSettings)EditorGUILayout.ObjectField(new GUIContent("Generated agent settings", "Select ScriptableObject you generated for agent"), _generatedSettings, typeof(AgentSettings), false);
+
                 GUI.backgroundColor = Color.white;
             }
             catch (ExitGUIException _) {}
@@ -43,39 +44,41 @@ namespace UnityNeuroSpeech.Editor
             var style = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
 
             if (string.IsNullOrEmpty(_prompt)) GUI.backgroundColor = Color.red;
+
             _prompt = EditorGUILayout.TextArea(_prompt, style, GUILayout.Height(200));
+
             GUI.backgroundColor = Color.white;
 
             if (GUILayout.Button("Send to LLM")) 
             {
-                if(_generatedSettings == null || string.IsNullOrEmpty(_prompt))
+                if(!_generatedSettings || string.IsNullOrEmpty(_prompt))
                 {
-                    LogUtils.LogError("[UnityNeuroSpeech] Required fields can't be empty!");
+                    LogUtils.LogError("Fill all required fields!");
                     return;
                 }
 
                 _sw.Start();
-                _llmResponse = await SafeExecutionUtils.SafeExecute("SendPromptToOllama", SendPromptToOllama, _generatedSettings.modelName, _generatedSettings.systemPrompt, _prompt);
+                LogUtils.LogError("Sending prompt to Ollama...");
+
+                _llmResponse = await SendPromptToOllama(_generatedSettings.modelName, _generatedSettings.systemPrompt, _prompt);
                 _sw.Stop();
             }
-
-            try
-            {
-                EditorGUILayout.LabelField("LLM", EditorStyles.boldLabel);
-                EditorGUILayout.LabelField($"LLM time: {_sw.ElapsedMilliseconds} ms");
-            }
-            catch (NullReferenceException _) {}
-
+  
+            EditorGUILayout.LabelField("LLM", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField($"LLM time: {_sw?.ElapsedMilliseconds} ms");
+            
             GUI.enabled = false;
+
             try
             {
                 _llmResponse = EditorGUILayout.TextArea(_llmResponse, style, GUILayout.Height(600));
             }
             catch (ArgumentException _) {}
+
             GUI.enabled = true;
         }
 
-        private async Task<string> SendPromptToOllama(string modelName, string systemPrompt, string prompt)
+        private async UniTask<string> SendPromptToOllama(string modelName, string systemPrompt, string prompt)
         {
             var json = Resources.Load<TextAsset>("UnityNeuroSpeech/UnityNeuroSpeechSharedSettings").text;
             var data = JsonUtility.FromJson<SharedJsonData>(json);

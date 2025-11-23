@@ -1,5 +1,4 @@
 #if UNITY_EDITOR
-
 using UnityNeuroSpeech.Utils;
 using UnityEditor;
 using UnityEngine;
@@ -24,15 +23,14 @@ namespace UnityNeuroSpeech.Editor
             // If error, then no settings file exists
             catch { return; }
 
-            try
-            {
-                var sharedData = JsonUtility.FromJson<SharedJsonData>(_sharedDataText);
-                LogUtils.logLevel = sharedData.logLevel;
+            var sharedData = JsonUtility.FromJson<SharedJsonData>(_sharedDataText);
+            if (!sharedData) 
+            { 
+                LogUtils.LogError($"No shared data was found in shared settings file!");
+                return;
             }
-            catch (System.Exception ex)
-            {
-                LogUtils.LogError($"[UnityNeuroSpeech] Unexpected error happened while loading shared settings file! Full error message: {ex}");
-            }
+
+            LogUtils.logLevel = sharedData.logLevel;   
         }
     }
 }
