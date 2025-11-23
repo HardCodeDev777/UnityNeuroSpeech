@@ -33,7 +33,7 @@
 
 ---
 
-UnityNeuroSpeech is a lightweight and open-source framework for creating **fully voice-interactive AI agents** inside Unity.  
+UnityNeuroSpeech is an open-source framework for creating **fully voice-interactive AI agents** inside Unity.  
 It connects:
 
 - 🧠 **Whisper** (STT) – converts your speech into text  
