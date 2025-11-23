@@ -80,7 +80,8 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 - 🧠 [`Microsoft.Extensions.AI`](https://learn.microsoft.com/en-us/dotnet/ai/) (Ollama)
 - 🎤 [`whisper.unity`](https://github.com/Macoron/whisper.unity)
-- 🧊 [Coqui XTTS model](https://github.com/idiap/coqui-ai-TTS)
+- ⚡ [UniTask](https://github.com/Cysharp/UniTask)
+- 🧊 [Coqui XTTS](https://github.com/idiap/coqui-ai-TTS)
 - 🖥️ [UV](https://github.com/astral-sh/uv)
 - 🤖 Unity 6
 
