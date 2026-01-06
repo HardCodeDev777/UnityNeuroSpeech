@@ -78,8 +78,8 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 ## 🧪 Built with:
 
-- 🧠 [`Microsoft.Extensions.AI`](https://learn.microsoft.com/en-us/dotnet/ai/) (Ollama)
-- 🎤 [`whisper.unity`](https://github.com/Macoron/whisper.unity)
+- 🧠 [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/) (Ollama)
+- 🎤 [whisper.unity](https://github.com/Macoron/whisper.unity)
 - ⚡ [UniTask](https://github.com/Cysharp/UniTask)
 - 🧊 [Coqui XTTS](https://github.com/idiap/coqui-ai-TTS)
 - 🖥️ [UV](https://github.com/astral-sh/uv)
@@ -92,13 +92,13 @@ No subscriptions, no accounts, no OpenAI API keys.
 | Scripting backend | Windows | Linux/Mac | Other platforms    |
 |-------------------|---------|-----------|--------------------|
 | Mono              | ✅       | ❌         | ❌ (not planned)    |
-| ILC2PP            | ✅       | ❌         | ❌ (not planned)    |
+| IL2CPP            | ✅       | ❌         | ❌ (not planned)    |
 
 ---
 
-## 📚 Get Started
+## 📚 Getting Started
 
-See [UnityNeuroSpeech official website](https://hardcodedev777.github.io/UnityNeuroSpeech/).
+See [UnityNeuroSpeech official documentation](https://hardcodedev777.github.io/UnityNeuroSpeech/).
 
 ---
 
