@@ -21,6 +21,8 @@
 
 - Added dependencies validation.
 
+---
+
 ## Post-release fixes (framework wasn't changed)
 
 - Fixed error with latest **Coqui TTS** broken version `0.27.3` in Setup. Now it's pinned to latest working `0.27.2` version
@@ -52,6 +54,8 @@
 ## Setup
 
 - One amazing `setup.bat` file handles everything — it installs all required dependencies automatically 😎 Just a `.unitypackage` and one script to run
+
+---
 
 ## Post-release fixes (framework wasn't changed)
 
