@@ -6,7 +6,7 @@ Thanks for your interest in improving UnityNeuroSpeech!
 
 ## 🛠️ How to Contribute
 
-Whether it's a bug fix, new feature, doc update, or crazy idea — you're welcome here!
+Whether it's a bug fix, new feature or doc update - you're welcome here!
 
 Here’s what to do:
 
@@ -22,15 +22,6 @@ Here’s what to do:
 - Write **clean, readable, and well-commented** code.
 - Follow **Unity C# best practices** (naming, null checks, serialization, etc).
 - Use **English** for all code comments, logs, and docs.
-- Test your changes — especially **if you're modifying the Python TTS server**.
-- Don't break existing features — unless you're upgrading them with care 😄
-
----
-
-## 📜 Licensing
-
-Make sure **you don’t include anything with a restrictive license** (especially if it’s not MIT-compatible).  
-Only submit code, models, or content that’s allowed for open source use.
 
 ---
 

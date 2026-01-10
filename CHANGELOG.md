@@ -1,7 +1,6 @@
 > [!IMPORTANT]
 > Only the latest version is officially supported.
 
-&nbsp;
 
 # v2.1.0 [23.11.2025]
 
@@ -22,18 +21,15 @@
 
 - Added dependencies validation.
 
+## Post-release fixes (framework wasn't changed)
+
+- Fixed error with latest **Coqui TTS** broken version `0.27.3` in Setup. Now it's pinned to latest working `0.27.2` version
+
 ---
 
 &nbsp;
 
 # v2.0.0 [12.10.2025]
-
-### 🎉 Finally... UnityNeuroSpeech v2.0.0!
-There are a lot of changes — but I’ll only mention the ones that really matter:
-
-&nbsp;
-
----
 
 ## ~TTS~
 
@@ -56,6 +52,10 @@ There are a lot of changes — but I’ll only mention the ones that really matt
 ## Setup
 
 - One amazing `setup.bat` file handles everything — it installs all required dependencies automatically 😎 Just a `.unitypackage` and one script to run
+
+## Post-release fixes (framework wasn't changed)
+
+- Fixed error with `llvmlite` while installing **Coqui TTS** in Setup
 
 ---
 

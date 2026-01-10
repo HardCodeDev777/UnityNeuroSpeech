@@ -46,7 +46,7 @@ echo [32mUV installed![0m
 echo.
 
 echo [32mInstalling Coqui-TTS via UV...[0m
-uv tool install --python 3.11 coqui-tts >> setup.log 2>&1
+uv tool install --python 3.11 "coqui-tts==0.27.2" >> setup.log 2>&1
 
 where tts >> setup.log 2>&1
 if %errorlevel% neq 0 (

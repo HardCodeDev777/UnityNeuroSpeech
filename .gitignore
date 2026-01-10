@@ -1,11 +1,4 @@
-# Python
+# MkDocs
 .venv/
 .idea/
-
-# MkDocs
 site/
-
-# Unity
-*.meta
-*.cs.meta
-*.asmdef.meta
