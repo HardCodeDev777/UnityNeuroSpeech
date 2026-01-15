@@ -1,12 +1,10 @@
 ![Unity](https://img.shields.io/badge/Unity-unity?logo=Unity&color=%23000000)
-![C#](https://img.shields.io/badge/C%23-%23512BD4?logo=.NET)
-![Ollama](https://img.shields.io/badge/Ollama-%23000000?logo=Ollama)
+&nbsp;
+
 ![License](https://img.shields.io/github/license/HardCodeDev777/UnityNeuroSpeech?color=%2305991d)
 ![Last commit](https://img.shields.io/github/last-commit/HardCodeDev777/UnityNeuroSpeech?color=%2305991d)
 ![Tag](https://img.shields.io/github/v/tag/HardCodeDev777/UnityNeuroSpeech)
 ![Top lang](https://img.shields.io/github/languages/top/HardCodeDev777/UnityNeuroSpeech)
-&nbsp;
-
 ![quality](https://img.shields.io/badge/quality-best-brightgreen)
 ![code_style](https://img.shields.io/badge/code_style-goat-lightgrey)
 
@@ -89,10 +87,10 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 ## ⚙️ Compatibility
 
-| Scripting backend | Windows | Linux/Mac | Other platforms    |
-|-------------------|---------|-----------|--------------------|
-| Mono              | ✅       | ❌         | ❌ (not planned)    |
-| IL2CPP            | ✅       | ❌         | ❌ (not planned)    |
+| Scripting backend | Windows |  Other platforms    |
+|-------------------|---------|--------------------|
+| Mono              | ✅       | ❌ (not planned)    |
+| IL2CPP            | ✅       | ❌ (not planned)    |
 
 ---
 
