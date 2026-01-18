@@ -1,3 +1,17 @@
+> [!WARNING]
+> Temporary instability notice
+>
+> Due to recent breaking changes in the Ollama API and the current state of `Microsoft.Extensions.AI`,
+> some functionality may not work as expected at the moment.
+>
+> The project itself is **not abandoned**.
+> A fix is planned, but no exact timeline is guaranteed.
+>
+> This repository has gone through many major iterations, and stability is a priority over rushed changes.
+> Please be patient while the integration layer is being stabilized.
+
+&nbsp;
+
 ![Unity](https://img.shields.io/badge/Unity-unity?logo=Unity&color=%23000000)
 &nbsp;
 
