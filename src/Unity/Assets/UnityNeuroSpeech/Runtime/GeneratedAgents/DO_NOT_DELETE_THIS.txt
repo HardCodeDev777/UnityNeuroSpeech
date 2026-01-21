@@ -1,0 +1,9 @@
+This file is required for .unitypackage export.
+
+Unity cannot export empty folders, so this placeholder file is needed.
+
+You can:
+Delete it after importing the .unitypackage.
+
+Ignore it - it has no effect on the project.
+

@@ -14,7 +14,7 @@ theme:
     - search.suggest
     - header.autohide
 nav:
-  - Quickstart: index.md
+  - Getting started: index.md
   - Unity:
       - Steps to make it work: unity/steps-to-make-it-work.md
       - Agent API: unity/agent-api.md

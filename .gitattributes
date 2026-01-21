@@ -1,1 +1,5 @@
+* text=auto
 *.bat linguist-detectable=true
+
+# I almost didn't change code and I don't want whole Whisper.unity C# statistic in this repository and my profile stats
+src/Unity/Assets/UnityNeuroSpeech/Whisper/** linguist-vendored

@@ -1,6 +1,27 @@
 > [!IMPORTANT]
 > Only the latest version is officially supported.
 
+# v2.2.0 [21.01.2026]
+
+## Unity
+
+- **Fixed IL2CPP freeze when running TTS process.**
+- **Replaced deprecated `Microsoft.Extensions.AI` with OllamaSharp.**
+- Centralized all framework paths into `StaticData.cs`.
+- Simplified **UNS Manager Creation** — now only Whisper model name is required instead of full `StreamingAssets/` path.
+- Removed legacy and low-value features (IL2CPP logging, custom framework locations).
+- `CreateSettings.cs` no longer generates `CreateAgent.cs` from template.
+- Improved code comments, logs, and internal validation.
+
+---
+
+## ~Setup~
+
+- Setup script was removed and replaced with a fully documented manual installation process.
+
+---
+
+&nbsp;
 
 # v2.1.0 [23.11.2025]
 

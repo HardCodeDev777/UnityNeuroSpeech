@@ -2,3 +2,20 @@
 .venv/
 .idea/
 site/
+
+# CMake and result output
+src/Native/build/
+src/Native/result/
+
+# VS
+src/UnityExtensions/.vs
+src/UnityExtensions/UnityExtensions/bin
+src/UnityExtensions/UnityExtensions/obj
+
+# Unity 
+# It's not project files to download and open with unity. It contains only frameworks files, 
+# critical assets (TTS models, audio files) are excluded. Downloaded latest Release to get a full working version for your Unity project.
+/src/Unity/**
+!/src/Unity/Assets/
+!/src/Unity/Assets/UnityNeuroSpeech/
+!/src/Unity/Assets/UnityNeuroSpeech/**

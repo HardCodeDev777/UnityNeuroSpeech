@@ -9,8 +9,6 @@ You can find tooltips for each field directly in the Unity Editor.
 
 ## Step 1. 🧪 Settings
 
----
-
 Go to **UnityNeuroSpeech → Main → Create Settings** in the Unity toolbar.  
 Default settings are recommended.
 
@@ -18,30 +16,16 @@ Default settings are recommended.
 
 ## Step 2. 👀 UNS Manager
 
----
-
 **UnityNeuroSpeech Manager** is a GameObject in your scene that controls all non-agent scripts.  
 Without it, no agent (talkable AI) will work.
 
----
 
 Create a `Dropdown` in your scene.  
-Then go to **UnityNeuroSpeech → Main → Create UNS Manager**.  
-
-The important setting there is:
-
-- **Whisper model path in StreamingAssets** — path to your downloaded Whisper model (`.bin`) inside the `StreamingAssets` folder (without the `Assets` directory).  
-  Example:  
-  If the full path is  
-  `Assets/StreamingAssets/UnityNeuroSpeech/Whisper/ggml-medium.bin`  
-  then you should enter  
-  `UnityNeuroSpeech/Whisper/ggml-medium.bin`
+Then go to **UnityNeuroSpeech → Main → Create UNS Manager**.
 
 ---
 
 ## Step 3. 🧠 Agent
-
----
 
 An **Agent** in UnityNeuroSpeech is a GameObject that can listen, respond, and talk using LLM.  
 **Once you create your first agent, you’ll be able to talk with your AI!**
@@ -52,7 +36,7 @@ Add a `Button` and an `AudioSource` to your scene.
 Then go to **UnityNeuroSpeech → Main → Create Agent**.  
 Here are some important settings:
 
-- **Agent index** — the index mentioned in the QuickStart.  
+- **Agent index** — the index mentioned in the Getting Started.  
   It links an agent to its voice file.  
   ⚠️ Each agent must have a unique index!
 
@@ -95,7 +79,7 @@ Agent performance (“speed”) depends on:
 - Voice files length  
 - AI response size  
 
-Small models like **deepseek-r1:7b** or **ggml-tiny.bin** run fast but may ignore system prompts (emotions, actions, etc.).  
+Small models like **qwen2.5:3b** or **ggml-base.bin** run fast, but may ignore system prompts (emotions, actions, etc.).  
 Large models like **ggml-large.bin** usually work perfectly — but will be very slow 😐
 
 > On first load, TTS may respond slowly — it’s ok. It'll work faster next time.

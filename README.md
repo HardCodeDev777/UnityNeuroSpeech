@@ -18,19 +18,6 @@
 
 ---
 
-> [!IMPORTANT]
-> Full response time (from your speech to TTS generated voice) can sometimes take a minute or more right now.
-> This isn't a bug – it's the current reality of running powerful AI models locally and for free:
-> - Good STT (like Whisper) needs time to be accurate.
-> - Even small LLM (via Ollama) needs some time to think up a good response.
-> - Generating high-quality voice with TTS is also a complex and not fast task.
-> 
-> The key thing is: this framework is built on the most optimal and user-friendly local solutions available for each stage (STT, LLM, TTS). You have the freedom to choose and download your own models (like Whisper `.bin` for STT and any model for Ollama), to use any custom voice you want, to make it for different languages, to customize your agents and to find the perfect balance between speed and quality for your setup.
-> 
-> Also this project is actively maintained. With every update, I'm working on making it faster, more optimized, and easier to use!
-
----
-
 UnityNeuroSpeech is an open-source framework for creating **fully voice-interactive AI agents** inside Unity.  
 It connects:
 
@@ -76,7 +63,7 @@ No subscriptions, no accounts, no OpenAI API keys.
 
 ## 🧪 Built with:
 
-- 🧠 [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/) (Ollama)
+- 🧠 [OllamaSharp](https://github.com/awaescher/OllamaSharp) 
 - 🎤 [whisper.unity](https://github.com/Macoron/whisper.unity)
 - ⚡ [UniTask](https://github.com/Cysharp/UniTask)
 - 🧊 [Coqui XTTS](https://github.com/idiap/coqui-ai-TTS)

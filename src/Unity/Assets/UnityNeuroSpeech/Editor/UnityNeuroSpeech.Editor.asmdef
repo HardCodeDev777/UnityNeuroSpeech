@@ -1,0 +1,31 @@
+{
+    "name": "UnityNeuroSpeech.Editor",
+    "rootNamespace": "",
+    "references": [
+        "UnityNeuroSpeech.Utils",
+        "UnityNeuroSpeech.Runtime",
+        "UnityNeuroSpeech.Shared",
+        "Unity.TextMeshPro",
+        "UniTask",
+        "com.whisper.unity"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Microsoft.Extensions.AI.Abstractions.dll",
+        "OllamaSharp.dll",
+        "System.Text.Json.dll",
+        "System.Text.Encodings.Web.dll",
+        "System.Runtime.CompilerServices.Unsafe.dll",
+        "System.IO.Pipelines.dll",
+        "UnityExtensions.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

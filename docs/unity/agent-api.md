@@ -48,8 +48,6 @@ public class AlexBehaviour : AgentBehaviour
 
 ### 🔍 Methods Overview
 
----
-
 - **AfterTTS** — Called after the audio playback finishes.  
 - **BeforeTTS** — Called before sending text to the TTS model.  
 - **AfterSTT** — Called after the STT model finishes transcribing microphone input.  
@@ -69,8 +67,6 @@ public override void Awake()
 ---
 
 ### 💡 What Is `SetBehaviourToAgent()`?
-
----
 
 The `SetBehaviourToAgent()` method connects your `AgentBehaviour` to the agent’s internal event hooks:
 
