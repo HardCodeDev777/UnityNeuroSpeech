@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quick-start" class="md-skip">
+        <a href="#getting-started" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Quickstart
+              Getting started
             
           </span>
         </div>
@@ -200,7 +200,7 @@
   
     
   
-  Quickstart
+  Getting started
 
       </a>
     </li>
@@ -294,7 +294,7 @@
   <span class="md-ellipsis">
     
   
-    Quickstart
+    Getting started
   
 
     
@@ -312,7 +312,7 @@
   <span class="md-ellipsis">
     
   
-    Quickstart
+    Getting started
   
 
     
@@ -345,6 +345,67 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="🛠 Installing Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ollama
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. STT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. TTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-unity-deps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Unity deps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-unityneurospeech" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. UnityNeuroSpeech
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -556,6 +617,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="🛠 Installing Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ollama
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. STT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. TTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-unity-deps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Unity deps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-unityneurospeech" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. UnityNeuroSpeech
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -600,16 +722,58 @@
   
 
 
-<h1 id="quick-start">🚀 Quick Start</h1>
+<h1 id="getting-started">🚀 Getting Started</h1>
 <hr />
 <h2 id="installing-requirements">🛠 Installing Requirements</h2>
+<p>UnityNeuroSpeech requires several things to be installed before using it in Unity. Here what you need to install:</p>
 <hr />
-<p>UnityNeuroSpeech requires several programs to be installed.<br />
-You can simply run <code>setup.bat</code> — it will download everything automatically.<br />
-Then just import the <code>.unitypackage</code> into your project.</p>
+<h3 id="1-ollama">1. Ollama</h3>
+<p><strong>Ollama</strong> is a platform for running large language models (LLMs) locally. You can use models like DeepSeek, Gemma, Qwen, etc. 
+Note that small models might affect accuracy and context understanding, but big models response can take a long time.</p>
+<p>Install it from the <a href="https://ollama.com/download">official website</a>.</p>
+<p>Then you need to download LLM model with this command:
+<div class="highlight"><pre><span></span><code><span class="go">ollama pull modelname</span>
+</code></pre></div></p>
+<blockquote>
+<p>For quick test I recommend to download <strong>qwen2.5:3b</strong> - it responds very fast.</p>
+</blockquote>
+<hr />
+<h3 id="2-stt">2. STT</h3>
+<p><strong>Whisper</strong> — Speech-To-Text model that transcribes and translates audio with high accuracy.</p>
+<p>You need to download Whisper model from <a href="https://huggingface.co/ggerganov/whisper.cpp/tree/main">here</a>.</p>
+<blockquote>
+<p>For quick test I recommend to download <code>ggml-base.bin</code>.</p>
+</blockquote>
+<hr />
+<h3 id="3-tts">3. TTS</h3>
+<p><strong>UV</strong> — a modern, ultra-fast Python package and environment manager. It replaces traditional tools like <code>pip</code>. 
+<strong>Coqui TTS</strong>(runs XTTS) uses <strong>UV</strong> to simplify installation and allows running the TTS command directly, without manual Python setup.</p>
+<p><strong>Coqui XTTS</strong> — a Text-To-Speech model that can generate speech in any custom voice you want: Chester Bennington, Vito Corleone (The Godfather), Cyn (Murder Drones) or any other.</p>
+<p>&nbsp;</p>
+<p>Install <strong>UV</strong> with this command:</p>
+<div class="highlight"><pre><span></span><code><span class="go">powershell -ExecutionPolicy ByPass -c &quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</code></pre></div>
+<p>Then install <strong>Coqui TTS</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="go">uv tool install --python 3.11 &quot;coqui-tts==0.27.2&quot;</span>
+</code></pre></div>
+<blockquote>
+<p>You can try to install latest <strong>Coqui TTS</strong> version, but I can't guarantee that it will work.</p>
+</blockquote>
+<hr />
+<h3 id="4-unity-deps">4. Unity deps</h3>
+<p>UnityNeuroSpeech uses <strong>UniTask</strong> for... I think everyone knows what <strong>UniTask</strong> is. 
+You can install it from the <a href="https://github.com/Cysharp/UniTask/releases">official repository</a>.</p>
+<p>Or via <strong>UPM</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="go">https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask</span>
+</code></pre></div>
+<hr />
+<h3 id="5-unityneurospeech">5. UnityNeuroSpeech</h3>
+<p>Now you can finally import <strong>UnityNeuroSpeech</strong> to your Unity project. </p>
+<p>Download <code>UnityNeuroSpeech.X.X.X.unitypackage</code> and <code>UNS_StreamingAssets.unitypackage</code> from the <a href="https://github.com/HardCodeDev777/UnityNeuroSpeech/releases">official repository</a>. Then you can import them in your project.</p>
+<p>They are splitted to avoid importing almost 2GB XTTS model in your project if you only need code/fixes.</p>
+<p><strong>Don't forget to put your downloaded Whisper model(<code>.bin</code>) in <code>Assets/StreamingAssets/UnityNeuroSpeech/Whisper/</code> - yes, it's important.</strong></p>
 <hr />
 <h2 id="voice-files">🎙️ Voice Files</h2>
-<hr />
 <p>Don’t forget that you need voice files for TTS speech.<br />
 Make sure your files meet the following requirements:</p>
 <ul>
@@ -628,9 +792,8 @@ Make sure your files meet the following requirements:</p>
 <code>Assets/StreamingAssets/UnityNeuroSpeech/Voices/</code></p>
 <hr />
 <h2 id="microphone-sprites">🖼️ Microphone Sprites</h2>
-<hr />
-<p>You’ll need two sprites for the microphone state (enabled/disabled).<br />
-Yes — without them, it won’t work 🤠</p>
+<p>You’ll need two sprites for the microphone state (enabled/disabled).
+But for quick test you can use random default sprites from Unity.</p>
 
 
 

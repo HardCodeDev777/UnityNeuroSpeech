@@ -200,7 +200,7 @@
   
     
   
-  Quickstart
+  Getting started
 
       </a>
     </li>
@@ -287,7 +287,7 @@
   <span class="md-ellipsis">
     
   
-    Quickstart
+    Getting started
   
 
     
@@ -613,29 +613,16 @@
 You can find tooltips for each field directly in the Unity Editor.</p>
 <hr />
 <h2 id="step-1-settings">Step 1. 🧪 Settings</h2>
-<hr />
 <p>Go to <strong>UnityNeuroSpeech → Main → Create Settings</strong> in the Unity toolbar.<br />
 Default settings are recommended.</p>
 <hr />
 <h2 id="step-2-uns-manager">Step 2. 👀 UNS Manager</h2>
-<hr />
 <p><strong>UnityNeuroSpeech Manager</strong> is a GameObject in your scene that controls all non-agent scripts.<br />
 Without it, no agent (talkable AI) will work.</p>
-<hr />
 <p>Create a <code>Dropdown</code> in your scene.<br />
-Then go to <strong>UnityNeuroSpeech → Main → Create UNS Manager</strong>.  </p>
-<p>The important setting there is:</p>
-<ul>
-<li><strong>Whisper model path in StreamingAssets</strong> — path to your downloaded Whisper model (<code>.bin</code>) inside the <code>StreamingAssets</code> folder (without the <code>Assets</code> directory).<br />
-  Example:<br />
-  If the full path is<br />
-<code>Assets/StreamingAssets/UnityNeuroSpeech/Whisper/ggml-medium.bin</code><br />
-  then you should enter<br />
-<code>UnityNeuroSpeech/Whisper/ggml-medium.bin</code></li>
-</ul>
+Then go to <strong>UnityNeuroSpeech → Main → Create UNS Manager</strong>.</p>
 <hr />
 <h2 id="step-3-agent">Step 3. 🧠 Agent</h2>
-<hr />
 <p>An <strong>Agent</strong> in UnityNeuroSpeech is a GameObject that can listen, respond, and talk using LLM.<br />
 <strong>Once you create your first agent, you’ll be able to talk with your AI!</strong></p>
 <hr />
@@ -644,7 +631,7 @@ Then go to <strong>UnityNeuroSpeech → Main → Create Agent</strong>.<br />
 Here are some important settings:</p>
 <ul>
 <li>
-<p><strong>Agent index</strong> — the index mentioned in the QuickStart.<br />
+<p><strong>Agent index</strong> — the index mentioned in the Getting Started.<br />
   It links an agent to its voice file.<br />
   ⚠️ Each agent must have a unique index!</p>
 </li>
@@ -684,7 +671,7 @@ Here are some important settings:</p>
 <li>Voice files length  </li>
 <li>AI response size  </li>
 </ul>
-<p>Small models like <strong>deepseek-r1:7b</strong> or <strong>ggml-tiny.bin</strong> run fast but may ignore system prompts (emotions, actions, etc.).<br />
+<p>Small models like <strong>qwen2.5:3b</strong> or <strong>ggml-base.bin</strong> run fast, but may ignore system prompts (emotions, actions, etc.).<br />
 Large models like <strong>ggml-large.bin</strong> usually work perfectly — but will be very slow 😐</p>
 <blockquote>
 <p>On first load, TTS may respond slowly — it’s ok. It'll work faster next time.</p>
